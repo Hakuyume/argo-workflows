@@ -1,3 +1,4 @@
+# coding: utf-8
 
 # flake8: noqa
 
@@ -6,7 +7,7 @@
 # raise a `RecursionError`.
 # In order to avoid this, import only the API that you directly need like:
 #
-#   from .api.archived_workflow_service_api import ArchivedWorkflowServiceApi
+#   from argo_workflows.api.archived_workflow_service_api import ArchivedWorkflowServiceApi
 #
 # or import this package, but before doing it, use:
 #

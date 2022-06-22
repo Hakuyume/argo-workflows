@@ -2,20 +2,19 @@
 
 PubSubEventSource refers to event-source for GCP PubSub related events.
 
-## Properties
+#### Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**credential_secret** | [**SecretKeySelector**](SecretKeySelector.md) |  | [optional] 
-**delete_subscription_on_finish** | **bool** |  | [optional] 
+**credentialSecret** | [**SecretKeySelector**](SecretKeySelector.md) |  | [optional] 
+**deleteSubscriptionOnFinish** | **bool** |  | [optional] 
 **filter** | [**IoArgoprojEventsV1alpha1EventSourceFilter**](IoArgoprojEventsV1alpha1EventSourceFilter.md) |  | [optional] 
-**json_body** | **bool** |  | [optional] 
+**jsonBody** | **bool** |  | [optional] 
 **metadata** | **{str: (str,)}** |  | [optional] 
-**project_id** | **str** |  | [optional] 
-**subscription_id** | **str** |  | [optional] 
+**projectID** | **str** |  | [optional] 
+**subscriptionID** | **str** |  | [optional] 
 **topic** | **str** |  | [optional] 
-**topic_project_id** | **str** |  | [optional] 
+**topicProjectID** | **str** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
 

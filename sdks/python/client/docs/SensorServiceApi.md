@@ -12,9 +12,8 @@ Method | HTTP request | Description
 [**update_sensor**](SensorServiceApi.md#update_sensor) | **PUT** /api/v1/sensors/{namespace}/{name} | 
 [**watch_sensors**](SensorServiceApi.md#watch_sensors) | **GET** /api/v1/stream/sensors/{namespace} | 
 
-
 # **create_sensor**
-> IoArgoprojEventsV1alpha1Sensor create_sensor(namespace, body)
+> IoArgoprojEventsV1alpha1Sensor create_sensor(namespacebody)
 
 
 
@@ -22,7 +21,6 @@ Method | HTTP request | Description
 
 * Api Key Authentication (BearerToken):
 ```python
-import time
 import argo_workflows
 from argo_workflows.api import sensor_service_api
 from argo_workflows.model.grpc_gateway_runtime_error import GrpcGatewayRuntimeError
@@ -45,16 +43,19 @@ configuration.api_key['BearerToken'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['BearerToken'] = 'Bearer'
-
 # Enter a context with an instance of the API client
 with argo_workflows.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = sensor_service_api.SensorServiceApi(api_client)
-    namespace = "namespace_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    path_params = {
+        'namespace': "namespace_example",
+    }
     body = SensorCreateSensorRequest(
         create_options=CreateOptions(
             dry_run=[
-                "dry_run_example",
+                "dry_run_example"
             ],
             field_manager="field_manager_example",
             field_validation="field_validation_example",
@@ -62,31 +63,31 @@ with argo_workflows.ApiClient(configuration) as api_client:
         namespace="namespace_example",
         sensor=IoArgoprojEventsV1alpha1Sensor(
             metadata=ObjectMeta(
-                annotations={
+                annotations=dict(
                     "key": "key_example",
-                },
+                ),
                 cluster_name="cluster_name_example",
-                creation_timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                creation_timestamp="1970-01-01T00:00:00.00Z",
                 deletion_grace_period_seconds=1,
-                deletion_timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                deletion_timestamp="1970-01-01T00:00:00.00Z",
                 finalizers=[
-                    "finalizers_example",
+                    "finalizers_example"
                 ],
                 generate_name="generate_name_example",
                 generation=1,
-                labels={
+                labels=dict(
                     "key": "key_example",
-                },
+                ),
                 managed_fields=[
                     ManagedFieldsEntry(
                         api_version="api_version_example",
                         fields_type="fields_type_example",
-                        fields_v1={},
+                        fields_v1=dict(),
                         manager="manager_example",
                         operation="operation_example",
                         subresource="subresource_example",
-                        time=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                    ),
+                        time="1970-01-01T00:00:00.00Z",
+                    )
                 ],
                 name="name_example",
                 namespace="namespace_example",
@@ -98,7 +99,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                         kind="kind_example",
                         name="name_example",
                         uid="uid_example",
-                    ),
+                    )
                 ],
                 resource_version="resource_version_example",
                 self_link="self_link_example",
@@ -116,7 +117,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 source="source_example",
                                 specversion="specversion_example",
                                 subject="subject_example",
-                                time=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                                time="1970-01-01T00:00:00.00Z",
                                 type="type_example",
                             ),
                             data=[
@@ -126,9 +127,9 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                     template="template_example",
                                     type="type_example",
                                     value=[
-                                        "value_example",
+                                        "value_example"
                                     ],
-                                ),
+                                )
                             ],
                             data_logical_operator="data_logical_operator_example",
                             expr_logical_operator="expr_logical_operator_example",
@@ -139,9 +140,9 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         IoArgoprojEventsV1alpha1PayloadField(
                                             name="name_example",
                                             path="path_example",
-                                        ),
+                                        )
                                     ],
-                                ),
+                                )
                             ],
                             time=IoArgoprojEventsV1alpha1TimeFilter(
                                 start="start_example",
@@ -154,7 +155,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             jq="jq_example",
                             script="script_example",
                         ),
-                    ),
+                    )
                 ],
                 error_on_failed_round=True,
                 event_bus_name="event_bus_name_example",
@@ -170,45 +171,20 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                                 key="key_example",
                                                 operator="DoesNotExist",
                                                 values=[
-                                                    "values_example",
+                                                    "values_example"
                                                 ],
-                                            ),
+                                            )
                                         ],
                                         match_fields=[
-                                            NodeSelectorRequirement(
-                                                key="key_example",
-                                                operator="DoesNotExist",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
+                                            NodeSelectorRequirement()
                                         ],
                                     ),
                                     weight=1,
-                                ),
+                                )
                             ],
                             required_during_scheduling_ignored_during_execution=NodeSelector(
                                 node_selector_terms=[
-                                    NodeSelectorTerm(
-                                        match_expressions=[
-                                            NodeSelectorRequirement(
-                                                key="key_example",
-                                                operator="DoesNotExist",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
-                                        ],
-                                        match_fields=[
-                                            NodeSelectorRequirement(
-                                                key="key_example",
-                                                operator="DoesNotExist",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
-                                        ],
-                                    ),
+                                    NodeSelectorTerm()
                                 ],
                             ),
                         ),
@@ -222,157 +198,42 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                                     key="key_example",
                                                     operator="operator_example",
                                                     values=[
-                                                        "values_example",
+                                                        "values_example"
                                                     ],
-                                                ),
+                                                )
                                             ],
-                                            match_labels={
+                                            match_labels=dict(
                                                 "key": "key_example",
-                                            },
+                                            ),
                                         ),
-                                        namespace_selector=LabelSelector(
-                                            match_expressions=[
-                                                LabelSelectorRequirement(
-                                                    key="key_example",
-                                                    operator="operator_example",
-                                                    values=[
-                                                        "values_example",
-                                                    ],
-                                                ),
-                                            ],
-                                            match_labels={
-                                                "key": "key_example",
-                                            },
-                                        ),
+                                        namespace_selector=LabelSelector(),
                                         namespaces=[
-                                            "namespaces_example",
+                                            "namespaces_example"
                                         ],
                                         topology_key="topology_key_example",
                                     ),
                                     weight=1,
-                                ),
+                                )
                             ],
                             required_during_scheduling_ignored_during_execution=[
-                                PodAffinityTerm(
-                                    label_selector=LabelSelector(
-                                        match_expressions=[
-                                            LabelSelectorRequirement(
-                                                key="key_example",
-                                                operator="operator_example",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
-                                        ],
-                                        match_labels={
-                                            "key": "key_example",
-                                        },
-                                    ),
-                                    namespace_selector=LabelSelector(
-                                        match_expressions=[
-                                            LabelSelectorRequirement(
-                                                key="key_example",
-                                                operator="operator_example",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
-                                        ],
-                                        match_labels={
-                                            "key": "key_example",
-                                        },
-                                    ),
-                                    namespaces=[
-                                        "namespaces_example",
-                                    ],
-                                    topology_key="topology_key_example",
-                                ),
+                                PodAffinityTerm()
                             ],
                         ),
                         pod_anti_affinity=PodAntiAffinity(
                             preferred_during_scheduling_ignored_during_execution=[
-                                WeightedPodAffinityTerm(
-                                    pod_affinity_term=PodAffinityTerm(
-                                        label_selector=LabelSelector(
-                                            match_expressions=[
-                                                LabelSelectorRequirement(
-                                                    key="key_example",
-                                                    operator="operator_example",
-                                                    values=[
-                                                        "values_example",
-                                                    ],
-                                                ),
-                                            ],
-                                            match_labels={
-                                                "key": "key_example",
-                                            },
-                                        ),
-                                        namespace_selector=LabelSelector(
-                                            match_expressions=[
-                                                LabelSelectorRequirement(
-                                                    key="key_example",
-                                                    operator="operator_example",
-                                                    values=[
-                                                        "values_example",
-                                                    ],
-                                                ),
-                                            ],
-                                            match_labels={
-                                                "key": "key_example",
-                                            },
-                                        ),
-                                        namespaces=[
-                                            "namespaces_example",
-                                        ],
-                                        topology_key="topology_key_example",
-                                    ),
-                                    weight=1,
-                                ),
+                                WeightedPodAffinityTerm()
                             ],
                             required_during_scheduling_ignored_during_execution=[
-                                PodAffinityTerm(
-                                    label_selector=LabelSelector(
-                                        match_expressions=[
-                                            LabelSelectorRequirement(
-                                                key="key_example",
-                                                operator="operator_example",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
-                                        ],
-                                        match_labels={
-                                            "key": "key_example",
-                                        },
-                                    ),
-                                    namespace_selector=LabelSelector(
-                                        match_expressions=[
-                                            LabelSelectorRequirement(
-                                                key="key_example",
-                                                operator="operator_example",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
-                                        ],
-                                        match_labels={
-                                            "key": "key_example",
-                                        },
-                                    ),
-                                    namespaces=[
-                                        "namespaces_example",
-                                    ],
-                                    topology_key="topology_key_example",
-                                ),
+                                PodAffinityTerm()
                             ],
                         ),
                     ),
                     container=Container(
                         args=[
-                            "args_example",
+                            "args_example"
                         ],
                         command=[
-                            "command_example",
+                            "command_example"
                         ],
                         env=[
                             EnvVar(
@@ -399,7 +260,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         optional=True,
                                     ),
                                 ),
-                            ),
+                            )
                         ],
                         env_from=[
                             EnvFromSource(
@@ -412,7 +273,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                     name="name_example",
                                     optional=True,
                                 ),
-                            ),
+                            )
                         ],
                         image="image_example",
                         image_pull_policy="Always",
@@ -420,7 +281,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             post_start=LifecycleHandler(
                                 _exec=ExecAction(
                                     command=[
-                                        "command_example",
+                                        "command_example"
                                     ],
                                 ),
                                 http_get=HTTPGetAction(
@@ -429,7 +290,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         HTTPHeader(
                                             name="name_example",
                                             value="value_example",
-                                        ),
+                                        )
                                     ],
                                     path="path_example",
                                     port="port_example",
@@ -440,60 +301,20 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                     port="port_example",
                                 ),
                             ),
-                            pre_stop=LifecycleHandler(
-                                _exec=ExecAction(
-                                    command=[
-                                        "command_example",
-                                    ],
-                                ),
-                                http_get=HTTPGetAction(
-                                    host="host_example",
-                                    http_headers=[
-                                        HTTPHeader(
-                                            name="name_example",
-                                            value="value_example",
-                                        ),
-                                    ],
-                                    path="path_example",
-                                    port="port_example",
-                                    scheme="HTTP",
-                                ),
-                                tcp_socket=TCPSocketAction(
-                                    host="host_example",
-                                    port="port_example",
-                                ),
-                            ),
+                            pre_stop=LifecycleHandler(),
                         ),
                         liveness_probe=Probe(
-                            _exec=ExecAction(
-                                command=[
-                                    "command_example",
-                                ],
-                            ),
+                            _exec=ExecAction(),
                             failure_threshold=1,
                             grpc=GRPCAction(
                                 port=1,
                                 service="service_example",
                             ),
-                            http_get=HTTPGetAction(
-                                host="host_example",
-                                http_headers=[
-                                    HTTPHeader(
-                                        name="name_example",
-                                        value="value_example",
-                                    ),
-                                ],
-                                path="path_example",
-                                port="port_example",
-                                scheme="HTTP",
-                            ),
+                            http_get=HTTPGetAction(),
                             initial_delay_seconds=1,
                             period_seconds=1,
                             success_threshold=1,
-                            tcp_socket=TCPSocketAction(
-                                host="host_example",
-                                port="port_example",
-                            ),
+                            tcp_socket=TCPSocketAction(),
                             termination_grace_period_seconds=1,
                             timeout_seconds=1,
                         ),
@@ -505,57 +326,25 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 host_port=1,
                                 name="name_example",
                                 protocol="SCTP",
-                            ),
+                            )
                         ],
-                        readiness_probe=Probe(
-                            _exec=ExecAction(
-                                command=[
-                                    "command_example",
-                                ],
-                            ),
-                            failure_threshold=1,
-                            grpc=GRPCAction(
-                                port=1,
-                                service="service_example",
-                            ),
-                            http_get=HTTPGetAction(
-                                host="host_example",
-                                http_headers=[
-                                    HTTPHeader(
-                                        name="name_example",
-                                        value="value_example",
-                                    ),
-                                ],
-                                path="path_example",
-                                port="port_example",
-                                scheme="HTTP",
-                            ),
-                            initial_delay_seconds=1,
-                            period_seconds=1,
-                            success_threshold=1,
-                            tcp_socket=TCPSocketAction(
-                                host="host_example",
-                                port="port_example",
-                            ),
-                            termination_grace_period_seconds=1,
-                            timeout_seconds=1,
-                        ),
+                        readiness_probe=Probe(),
                         resources=ResourceRequirements(
-                            limits={
+                            limits=dict(
                                 "key": "key_example",
-                            },
-                            requests={
+                            ),
+                            requests=dict(
                                 "key": "key_example",
-                            },
+                            ),
                         ),
                         security_context=SecurityContext(
                             allow_privilege_escalation=True,
                             capabilities=Capabilities(
                                 add=[
-                                    "add_example",
+                                    "add_example"
                                 ],
                                 drop=[
-                                    "drop_example",
+                                    "drop_example"
                                 ],
                             ),
                             privileged=True,
@@ -581,39 +370,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 run_as_user_name="run_as_user_name_example",
                             ),
                         ),
-                        startup_probe=Probe(
-                            _exec=ExecAction(
-                                command=[
-                                    "command_example",
-                                ],
-                            ),
-                            failure_threshold=1,
-                            grpc=GRPCAction(
-                                port=1,
-                                service="service_example",
-                            ),
-                            http_get=HTTPGetAction(
-                                host="host_example",
-                                http_headers=[
-                                    HTTPHeader(
-                                        name="name_example",
-                                        value="value_example",
-                                    ),
-                                ],
-                                path="path_example",
-                                port="port_example",
-                                scheme="HTTP",
-                            ),
-                            initial_delay_seconds=1,
-                            period_seconds=1,
-                            success_threshold=1,
-                            tcp_socket=TCPSocketAction(
-                                host="host_example",
-                                port="port_example",
-                            ),
-                            termination_grace_period_seconds=1,
-                            timeout_seconds=1,
-                        ),
+                        startup_probe=Probe(),
                         stdin=True,
                         stdin_once=True,
                         termination_message_path="termination_message_path_example",
@@ -623,7 +380,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             VolumeDevice(
                                 device_path="device_path_example",
                                 name="name_example",
-                            ),
+                            )
                         ],
                         volume_mounts=[
                             VolumeMount(
@@ -633,26 +390,24 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 read_only=True,
                                 sub_path="sub_path_example",
                                 sub_path_expr="sub_path_expr_example",
-                            ),
+                            )
                         ],
                         working_dir="working_dir_example",
                     ),
                     image_pull_secrets=[
                         LocalObjectReference(
                             name="name_example",
-                        ),
+                        )
                     ],
                     metadata=IoArgoprojEventsV1alpha1Metadata(
-                        annotations={
+                        annotations=dict(
                             "key": "key_example",
-                        },
-                        labels={
-                            "key": "key_example",
-                        },
+                        ),
+                        labels=dict(),
                     ),
-                    node_selector={
+                    node_selector=dict(
                         "key": "key_example",
-                    },
+                    ),
                     priority=1,
                     priority_class_name="priority_class_name_example",
                     security_context=PodSecurityContext(
@@ -661,31 +416,18 @@ with argo_workflows.ApiClient(configuration) as api_client:
                         run_as_group=1,
                         run_as_non_root=True,
                         run_as_user=1,
-                        se_linux_options=SELinuxOptions(
-                            level="level_example",
-                            role="role_example",
-                            type="type_example",
-                            user="user_example",
-                        ),
-                        seccomp_profile=SeccompProfile(
-                            localhost_profile="localhost_profile_example",
-                            type="Localhost",
-                        ),
+                        se_linux_options=SELinuxOptions(),
+                        seccomp_profile=SeccompProfile(),
                         supplemental_groups=[
-                            1,
+                            1
                         ],
                         sysctls=[
                             Sysctl(
                                 name="name_example",
                                 value="value_example",
-                            ),
+                            )
                         ],
-                        windows_options=WindowsSecurityContextOptions(
-                            gmsa_credential_spec="gmsa_credential_spec_example",
-                            gmsa_credential_spec_name="gmsa_credential_spec_name_example",
-                            host_process=True,
-                            run_as_user_name="run_as_user_name_example",
-                        ),
+                        windows_options=WindowsSecurityContextOptions(),
                     ),
                     service_account_name="service_account_name_example",
                     tolerations=[
@@ -695,7 +437,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             operator="Equal",
                             toleration_seconds=1,
                             value="value_example",
-                        ),
+                        )
                     ],
                     volumes=[
                         Volume(
@@ -720,22 +462,18 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             ),
                             cephfs=CephFSVolumeSource(
                                 monitors=[
-                                    "monitors_example",
+                                    "monitors_example"
                                 ],
                                 path="path_example",
                                 read_only=True,
                                 secret_file="secret_file_example",
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                secret_ref=LocalObjectReference(),
                                 user="user_example",
                             ),
                             cinder=CinderVolumeSource(
                                 fs_type="fs_type_example",
                                 read_only=True,
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                secret_ref=LocalObjectReference(),
                                 volume_id="volume_id_example",
                             ),
                             config_map=ConfigMapVolumeSource(
@@ -745,7 +483,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         key="key_example",
                                         mode=1,
                                         path="path_example",
-                                    ),
+                                    )
                                 ],
                                 name="name_example",
                                 optional=True,
@@ -753,30 +491,21 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             csi=CSIVolumeSource(
                                 driver="driver_example",
                                 fs_type="fs_type_example",
-                                node_publish_secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                node_publish_secret_ref=LocalObjectReference(),
                                 read_only=True,
-                                volume_attributes={
+                                volume_attributes=dict(
                                     "key": "key_example",
-                                },
+                                ),
                             ),
                             downward_api=DownwardAPIVolumeSource(
                                 default_mode=1,
                                 items=[
                                     DownwardAPIVolumeFile(
-                                        field_ref=ObjectFieldSelector(
-                                            api_version="api_version_example",
-                                            field_path="field_path_example",
-                                        ),
+                                        field_ref=ObjectFieldSelector(),
                                         mode=1,
                                         path="path_example",
-                                        resource_field_ref=ResourceFieldSelector(
-                                            container_name="container_name_example",
-                                            divisor="divisor_example",
-                                            resource="resource_example",
-                                        ),
-                                    ),
+                                        resource_field_ref=ResourceFieldSelector(),
+                                    )
                                 ],
                             ),
                             empty_dir=EmptyDirVolumeSource(
@@ -785,85 +514,19 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             ),
                             ephemeral=EphemeralVolumeSource(
                                 volume_claim_template=PersistentVolumeClaimTemplate(
-                                    metadata=ObjectMeta(
-                                        annotations={
-                                            "key": "key_example",
-                                        },
-                                        cluster_name="cluster_name_example",
-                                        creation_timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                                        deletion_grace_period_seconds=1,
-                                        deletion_timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                                        finalizers=[
-                                            "finalizers_example",
-                                        ],
-                                        generate_name="generate_name_example",
-                                        generation=1,
-                                        labels={
-                                            "key": "key_example",
-                                        },
-                                        managed_fields=[
-                                            ManagedFieldsEntry(
-                                                api_version="api_version_example",
-                                                fields_type="fields_type_example",
-                                                fields_v1={},
-                                                manager="manager_example",
-                                                operation="operation_example",
-                                                subresource="subresource_example",
-                                                time=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                                            ),
-                                        ],
-                                        name="name_example",
-                                        namespace="namespace_example",
-                                        owner_references=[
-                                            OwnerReference(
-                                                api_version="api_version_example",
-                                                block_owner_deletion=True,
-                                                controller=True,
-                                                kind="kind_example",
-                                                name="name_example",
-                                                uid="uid_example",
-                                            ),
-                                        ],
-                                        resource_version="resource_version_example",
-                                        self_link="self_link_example",
-                                        uid="uid_example",
-                                    ),
+                                    metadata=ObjectMeta(),
                                     spec=PersistentVolumeClaimSpec(
                                         access_modes=[
-                                            "access_modes_example",
+                                            "access_modes_example"
                                         ],
                                         data_source=TypedLocalObjectReference(
                                             api_group="api_group_example",
                                             kind="kind_example",
                                             name="name_example",
                                         ),
-                                        data_source_ref=TypedLocalObjectReference(
-                                            api_group="api_group_example",
-                                            kind="kind_example",
-                                            name="name_example",
-                                        ),
-                                        resources=ResourceRequirements(
-                                            limits={
-                                                "key": "key_example",
-                                            },
-                                            requests={
-                                                "key": "key_example",
-                                            },
-                                        ),
-                                        selector=LabelSelector(
-                                            match_expressions=[
-                                                LabelSelectorRequirement(
-                                                    key="key_example",
-                                                    operator="operator_example",
-                                                    values=[
-                                                        "values_example",
-                                                    ],
-                                                ),
-                                            ],
-                                            match_labels={
-                                                "key": "key_example",
-                                            },
-                                        ),
+                                        data_source_ref=TypedLocalObjectReference(),
+                                        resources=ResourceRequirements(),
+                                        selector=LabelSelector(),
                                         storage_class_name="storage_class_name_example",
                                         volume_mode="volume_mode_example",
                                         volume_name="volume_name_example",
@@ -875,22 +538,20 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 lun=1,
                                 read_only=True,
                                 target_wwns=[
-                                    "target_wwns_example",
+                                    "target_wwns_example"
                                 ],
                                 wwids=[
-                                    "wwids_example",
+                                    "wwids_example"
                                 ],
                             ),
                             flex_volume=FlexVolumeSource(
                                 driver="driver_example",
                                 fs_type="fs_type_example",
-                                options={
+                                options=dict(
                                     "key": "key_example",
-                                },
-                                read_only=True,
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
                                 ),
+                                read_only=True,
+                                secret_ref=LocalObjectReference(),
                             ),
                             flocker=FlockerVolumeSource(
                                 dataset_name="dataset_name_example",
@@ -925,12 +586,10 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 iscsi_interface="iscsi_interface_example",
                                 lun=1,
                                 portals=[
-                                    "portals_example",
+                                    "portals_example"
                                 ],
                                 read_only=True,
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                secret_ref=LocalObjectReference(),
                                 target_portal="target_portal_example",
                             ),
                             name="name_example",
@@ -957,40 +616,18 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 sources=[
                                     VolumeProjection(
                                         config_map=ConfigMapProjection(
-                                            items=[
-                                                KeyToPath(
-                                                    key="key_example",
-                                                    mode=1,
-                                                    path="path_example",
-                                                ),
-                                            ],
+                                            items=[],
                                             name="name_example",
                                             optional=True,
                                         ),
                                         downward_api=DownwardAPIProjection(
                                             items=[
-                                                DownwardAPIVolumeFile(
-                                                    field_ref=ObjectFieldSelector(
-                                                        api_version="api_version_example",
-                                                        field_path="field_path_example",
-                                                    ),
-                                                    mode=1,
-                                                    path="path_example",
-                                                    resource_field_ref=ResourceFieldSelector(
-                                                        container_name="container_name_example",
-                                                        divisor="divisor_example",
-                                                        resource="resource_example",
-                                                    ),
-                                                ),
+                                                DownwardAPIVolumeFile()
                                             ],
                                         ),
                                         secret=SecretProjection(
                                             items=[
-                                                KeyToPath(
-                                                    key="key_example",
-                                                    mode=1,
-                                                    path="path_example",
-                                                ),
+                                                KeyToPath()
                                             ],
                                             name="name_example",
                                             optional=True,
@@ -1000,7 +637,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                             expiration_seconds=1,
                                             path="path_example",
                                         ),
-                                    ),
+                                    )
                                 ],
                             ),
                             quobyte=QuobyteVolumeSource(
@@ -1016,13 +653,11 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 image="image_example",
                                 keyring="keyring_example",
                                 monitors=[
-                                    "monitors_example",
+                                    "monitors_example"
                                 ],
                                 pool="pool_example",
                                 read_only=True,
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                secret_ref=LocalObjectReference(),
                                 user="user_example",
                             ),
                             scale_io=ScaleIOVolumeSource(
@@ -1030,9 +665,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 gateway="gateway_example",
                                 protection_domain="protection_domain_example",
                                 read_only=True,
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                secret_ref=LocalObjectReference(),
                                 ssl_enabled=True,
                                 storage_mode="storage_mode_example",
                                 storage_pool="storage_pool_example",
@@ -1041,22 +674,14 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             ),
                             secret=SecretVolumeSource(
                                 default_mode=1,
-                                items=[
-                                    KeyToPath(
-                                        key="key_example",
-                                        mode=1,
-                                        path="path_example",
-                                    ),
-                                ],
+                                items=[],
                                 optional=True,
                                 secret_name="secret_name_example",
                             ),
                             storageos=StorageOSVolumeSource(
                                 fs_type="fs_type_example",
                                 read_only=True,
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                secret_ref=LocalObjectReference(),
                                 volume_name="volume_name_example",
                                 volume_namespace="volume_namespace_example",
                             ),
@@ -1066,7 +691,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 storage_policy_name="storage_policy_name_example",
                                 volume_path="volume_path_example",
                             ),
-                        ),
+                        )
                     ],
                 ),
                 triggers=[
@@ -1083,7 +708,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                     dependency_name="dependency_name_example",
                                     value="value_example",
                                 ),
-                            ),
+                            )
                         ],
                         policy=IoArgoprojEventsV1alpha1TriggerPolicy(
                             k8s=IoArgoprojEventsV1alpha1K8SResourcePolicy(
@@ -1096,19 +721,17 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                     factor=IoArgoprojEventsV1alpha1Amount(
                                         value='YQ==',
                                     ),
-                                    jitter=IoArgoprojEventsV1alpha1Amount(
-                                        value='YQ==',
-                                    ),
+                                    jitter=IoArgoprojEventsV1alpha1Amount(),
                                     steps=1,
                                 ),
                                 error_on_backoff_timeout=True,
-                                labels={
+                                labels=dict(
                                     "key": "key_example",
-                                },
+                                ),
                             ),
                             status=IoArgoprojEventsV1alpha1StatusPolicy(
                                 allow=[
-                                    1,
+                                    1
                                 ],
                             ),
                         ),
@@ -1116,43 +739,15 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             requests_per_unit=1,
                             unit="unit_example",
                         ),
-                        retry_strategy=IoArgoprojEventsV1alpha1Backoff(
-                            duration=IoArgoprojEventsV1alpha1Int64OrString(
-                                int64_val="int64_val_example",
-                                str_val="str_val_example",
-                                type="type_example",
-                            ),
-                            factor=IoArgoprojEventsV1alpha1Amount(
-                                value='YQ==',
-                            ),
-                            jitter=IoArgoprojEventsV1alpha1Amount(
-                                value='YQ==',
-                            ),
-                            steps=1,
-                        ),
+                        retry_strategy=IoArgoprojEventsV1alpha1Backoff(),
                         template=IoArgoprojEventsV1alpha1TriggerTemplate(
                             argo_workflow=IoArgoprojEventsV1alpha1ArgoWorkflowTrigger(
                                 operation="operation_example",
                                 parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 source=IoArgoprojEventsV1alpha1ArtifactLocation(
-                                    configmap=ConfigMapKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
+                                    configmap=ConfigMapKeySelector(),
                                     file=IoArgoprojEventsV1alpha1FileArtifact(
                                         path="path_example",
                                     ),
@@ -1160,30 +755,18 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         branch="branch_example",
                                         clone_directory="clone_directory_example",
                                         creds=IoArgoprojEventsV1alpha1GitCreds(
-                                            password=SecretKeySelector(
-                                                key="key_example",
-                                                name="name_example",
-                                                optional=True,
-                                            ),
-                                            username=SecretKeySelector(
-                                                key="key_example",
-                                                name="name_example",
-                                                optional=True,
-                                            ),
+                                            password=SecretKeySelector(),
+                                            username=SecretKeySelector(),
                                         ),
                                         file_path="file_path_example",
                                         ref="ref_example",
                                         remote=IoArgoprojEventsV1alpha1GitRemoteConfig(
                                             name="name_example",
                                             urls=[
-                                                "urls_example",
+                                                "urls_example"
                                             ],
                                         ),
-                                        ssh_key_secret=SecretKeySelector(
-                                            key="key_example",
-                                            name="name_example",
-                                            optional=True,
-                                        ),
+                                        ssh_key_secret=SecretKeySelector(),
                                         tag="tag_example",
                                         url="url_example",
                                     ),
@@ -1192,33 +775,23 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         value='YQ==',
                                     ),
                                     s3=IoArgoprojEventsV1alpha1S3Artifact(
-                                        access_key=SecretKeySelector(
-                                            key="key_example",
-                                            name="name_example",
-                                            optional=True,
-                                        ),
+                                        access_key=SecretKeySelector(),
                                         bucket=IoArgoprojEventsV1alpha1S3Bucket(
                                             key="key_example",
                                             name="name_example",
                                         ),
                                         endpoint="endpoint_example",
                                         events=[
-                                            "events_example",
+                                            "events_example"
                                         ],
                                         filter=IoArgoprojEventsV1alpha1S3Filter(
                                             prefix="prefix_example",
                                             suffix="suffix_example",
                                         ),
                                         insecure=True,
-                                        metadata={
-                                            "key": "key_example",
-                                        },
+                                        metadata=dict(),
                                         region="region_example",
-                                        secret_key=SecretKeySelector(
-                                            key="key_example",
-                                            name="name_example",
-                                            optional=True,
-                                        ),
+                                        secret_key=SecretKeySelector(),
                                     ),
                                     url=IoArgoprojEventsV1alpha1URLArtifact(
                                         path="path_example",
@@ -1227,90 +800,26 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 ),
                             ),
                             aws_lambda=IoArgoprojEventsV1alpha1AWSLambdaTrigger(
-                                access_key=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                access_key=SecretKeySelector(),
                                 function_name="function_name_example",
                                 invocation_type="invocation_type_example",
                                 parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 region="region_example",
                                 role_arn="role_arn_example",
-                                secret_key=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                secret_key=SecretKeySelector(),
                             ),
                             azure_event_hubs=IoArgoprojEventsV1alpha1AzureEventHubsTrigger(
                                 fqdn="fqdn_example",
                                 hub_name="hub_name_example",
-                                parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                shared_access_key=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
-                                shared_access_key_name=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                parameters=[],
+                                payload=[],
+                                shared_access_key=SecretKeySelector(),
+                                shared_access_key_name=SecretKeySelector(),
                             ),
                             conditions="conditions_example",
                             conditions_reset=[
@@ -1319,128 +828,50 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         cron="cron_example",
                                         timezone="timezone_example",
                                     ),
-                                ),
+                                )
                             ],
                             custom=IoArgoprojEventsV1alpha1CustomTrigger(
-                                cert_secret=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                cert_secret=SecretKeySelector(),
                                 parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
-                                payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
+                                payload=[],
                                 secure=True,
                                 server_name_override="server_name_override_example",
                                 server_url="server_url_example",
-                                spec={
+                                spec=dict(
                                     "key": "key_example",
-                                },
+                                ),
                             ),
                             http=IoArgoprojEventsV1alpha1HTTPTrigger(
                                 basic_auth=IoArgoprojEventsV1alpha1BasicAuth(
-                                    password=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    username=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
+                                    password=SecretKeySelector(),
+                                    username=SecretKeySelector(),
                                 ),
-                                headers={
+                                headers=dict(
                                     "key": "key_example",
-                                },
+                                ),
                                 method="method_example",
                                 parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 secure_headers=[
                                     IoArgoprojEventsV1alpha1SecureHeader(
                                         name="name_example",
                                         value_from=IoArgoprojEventsV1alpha1ValueFromSource(
-                                            config_map_key_ref=ConfigMapKeySelector(
-                                                key="key_example",
-                                                name="name_example",
-                                                optional=True,
-                                            ),
-                                            secret_key_ref=SecretKeySelector(
-                                                key="key_example",
-                                                name="name_example",
-                                                optional=True,
-                                            ),
+                                            config_map_key_ref=ConfigMapKeySelector(),
+                                            secret_key_ref=SecretKeySelector(),
                                         ),
-                                    ),
+                                    )
                                 ],
                                 timeout="timeout_example",
                                 tls=IoArgoprojEventsV1alpha1TLSConfig(
-                                    ca_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_key_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
+                                    ca_cert_secret=SecretKeySelector(),
+                                    client_cert_secret=SecretKeySelector(),
+                                    client_key_secret=SecretKeySelector(),
                                     insecure_skip_verify=True,
                                 ),
                                 url="url_example",
@@ -1449,164 +880,27 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 live_object=True,
                                 operation="operation_example",
                                 parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 patch_strategy="patch_strategy_example",
-                                source=IoArgoprojEventsV1alpha1ArtifactLocation(
-                                    configmap=ConfigMapKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    file=IoArgoprojEventsV1alpha1FileArtifact(
-                                        path="path_example",
-                                    ),
-                                    git=IoArgoprojEventsV1alpha1GitArtifact(
-                                        branch="branch_example",
-                                        clone_directory="clone_directory_example",
-                                        creds=IoArgoprojEventsV1alpha1GitCreds(
-                                            password=SecretKeySelector(
-                                                key="key_example",
-                                                name="name_example",
-                                                optional=True,
-                                            ),
-                                            username=SecretKeySelector(
-                                                key="key_example",
-                                                name="name_example",
-                                                optional=True,
-                                            ),
-                                        ),
-                                        file_path="file_path_example",
-                                        ref="ref_example",
-                                        remote=IoArgoprojEventsV1alpha1GitRemoteConfig(
-                                            name="name_example",
-                                            urls=[
-                                                "urls_example",
-                                            ],
-                                        ),
-                                        ssh_key_secret=SecretKeySelector(
-                                            key="key_example",
-                                            name="name_example",
-                                            optional=True,
-                                        ),
-                                        tag="tag_example",
-                                        url="url_example",
-                                    ),
-                                    inline="inline_example",
-                                    resource=IoArgoprojEventsV1alpha1Resource(
-                                        value='YQ==',
-                                    ),
-                                    s3=IoArgoprojEventsV1alpha1S3Artifact(
-                                        access_key=SecretKeySelector(
-                                            key="key_example",
-                                            name="name_example",
-                                            optional=True,
-                                        ),
-                                        bucket=IoArgoprojEventsV1alpha1S3Bucket(
-                                            key="key_example",
-                                            name="name_example",
-                                        ),
-                                        endpoint="endpoint_example",
-                                        events=[
-                                            "events_example",
-                                        ],
-                                        filter=IoArgoprojEventsV1alpha1S3Filter(
-                                            prefix="prefix_example",
-                                            suffix="suffix_example",
-                                        ),
-                                        insecure=True,
-                                        metadata={
-                                            "key": "key_example",
-                                        },
-                                        region="region_example",
-                                        secret_key=SecretKeySelector(
-                                            key="key_example",
-                                            name="name_example",
-                                            optional=True,
-                                        ),
-                                    ),
-                                    url=IoArgoprojEventsV1alpha1URLArtifact(
-                                        path="path_example",
-                                        verify_cert=True,
-                                    ),
-                                ),
+                                source=IoArgoprojEventsV1alpha1ArtifactLocation(),
                             ),
                             kafka=IoArgoprojEventsV1alpha1KafkaTrigger(
                                 compress=True,
                                 flush_frequency=1,
                                 parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 partition=1,
                                 partitioning_key="partitioning_key_example",
-                                payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
+                                payload=[],
                                 required_acks=1,
                                 sasl=IoArgoprojEventsV1alpha1SASLConfig(
                                     mechanism="mechanism_example",
-                                    password=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    user=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
+                                    password=SecretKeySelector(),
+                                    user=SecretKeySelector(),
                                 ),
-                                tls=IoArgoprojEventsV1alpha1TLSConfig(
-                                    ca_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_key_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    insecure_skip_verify=True,
-                                ),
+                                tls=IoArgoprojEventsV1alpha1TLSConfig(),
                                 topic="topic_example",
                                 url="url_example",
                                 version="version_example",
@@ -1616,166 +910,29 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             ),
                             name="name_example",
                             nats=IoArgoprojEventsV1alpha1NATSTrigger(
-                                parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
+                                parameters=[],
+                                payload=[],
                                 subject="subject_example",
-                                tls=IoArgoprojEventsV1alpha1TLSConfig(
-                                    ca_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_key_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    insecure_skip_verify=True,
-                                ),
+                                tls=IoArgoprojEventsV1alpha1TLSConfig(),
                                 url="url_example",
                             ),
                             open_whisk=IoArgoprojEventsV1alpha1OpenWhiskTrigger(
                                 action_name="action_name_example",
-                                auth_token=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                auth_token=SecretKeySelector(),
                                 host="host_example",
                                 namespace="namespace_example",
-                                parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
+                                parameters=[],
+                                payload=[],
                                 version="version_example",
                             ),
                             pulsar=IoArgoprojEventsV1alpha1PulsarTrigger(
-                                auth_token_secret=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
-                                connection_backoff=IoArgoprojEventsV1alpha1Backoff(
-                                    duration=IoArgoprojEventsV1alpha1Int64OrString(
-                                        int64_val="int64_val_example",
-                                        str_val="str_val_example",
-                                        type="type_example",
-                                    ),
-                                    factor=IoArgoprojEventsV1alpha1Amount(
-                                        value='YQ==',
-                                    ),
-                                    jitter=IoArgoprojEventsV1alpha1Amount(
-                                        value='YQ==',
-                                    ),
-                                    steps=1,
-                                ),
-                                parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                tls=IoArgoprojEventsV1alpha1TLSConfig(
-                                    ca_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_key_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    insecure_skip_verify=True,
-                                ),
+                                auth_token_secret=SecretKeySelector(),
+                                connection_backoff=IoArgoprojEventsV1alpha1Backoff(),
+                                parameters=[],
+                                payload=[],
+                                tls=IoArgoprojEventsV1alpha1TLSConfig(),
                                 tls_allow_insecure_connection=True,
-                                tls_trust_certs_secret=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                tls_trust_certs_secret=SecretKeySelector(),
                                 tls_validate_hostname=True,
                                 topic="topic_example",
                                 url="url_example",
@@ -1783,63 +940,104 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             slack=IoArgoprojEventsV1alpha1SlackTrigger(
                                 channel="channel_example",
                                 message="message_example",
-                                parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                slack_token=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                parameters=[],
+                                slack_token=SecretKeySelector(),
                             ),
                         ),
-                    ),
+                    )
                 ],
             ),
             status=IoArgoprojEventsV1alpha1SensorStatus(
                 status=IoArgoprojEventsV1alpha1Status(
                     conditions=[
                         IoArgoprojEventsV1alpha1Condition(
-                            last_transition_time=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                            last_transition_time="1970-01-01T00:00:00.00Z",
                             message="message_example",
                             reason="reason_example",
                             status="status_example",
                             type="type_example",
-                        ),
+                        )
                     ],
                 ),
             ),
         ),
-    ) # SensorCreateSensorRequest | 
-
-    # example passing only required values which don't have defaults set
+    )
     try:
-        api_response = api_instance.create_sensor(namespace, body)
+        api_response = api_instance.create_sensor(
+            path_params=path_params,
+            body=body,
+        )
         pprint(api_response)
     except argo_workflows.ApiException as e:
         print("Exception when calling SensorServiceApi->create_sensor: %s\n" % e)
 ```
-
-
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **str**|  |
- **body** | [**SensorCreateSensorRequest**](SensorCreateSensorRequest.md)|  |
+body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
+path_params | RequestPathParams | |
+content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
+accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
 
-### Return type
+### body
+
+#### SchemaForRequestBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**SensorCreateSensorRequest**](SensorCreateSensorRequest.md) |  | 
+
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+namespace | NamespaceSchema | | 
+
+#### NamespaceSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | ApiResponseFor200 | A successful response.
+default | ApiResponseForDefault | An unexpected error response.
+
+#### ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor200ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**IoArgoprojEventsV1alpha1Sensor**](IoArgoprojEventsV1alpha1Sensor.md) |  | 
+
+
+#### ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**GrpcGatewayRuntimeError**](GrpcGatewayRuntimeError.md) |  | 
+
+
 
 [**IoArgoprojEventsV1alpha1Sensor**](IoArgoprojEventsV1alpha1Sensor.md)
 
@@ -1847,22 +1045,10 @@ Name | Type | Description  | Notes
 
 [BearerToken](../README.md#BearerToken)
 
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**0** | An unexpected error response. |  -  |
-
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_sensor**
-> bool, date, datetime, dict, float, int, list, str, none_type delete_sensor(namespace, name)
+> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} delete_sensor(namespacename)
 
 
 
@@ -1870,7 +1056,6 @@ Name | Type | Description  | Notes
 
 * Api Key Authentication (BearerToken):
 ```python
-import time
 import argo_workflows
 from argo_workflows.api import sensor_service_api
 from argo_workflows.model.grpc_gateway_runtime_error import GrpcGatewayRuntimeError
@@ -1891,76 +1076,177 @@ configuration.api_key['BearerToken'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['BearerToken'] = 'Bearer'
-
 # Enter a context with an instance of the API client
 with argo_workflows.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = sensor_service_api.SensorServiceApi(api_client)
-    namespace = "namespace_example" # str | 
-    name = "name_example" # str | 
-    delete_options_grace_period_seconds = "deleteOptions.gracePeriodSeconds_example" # str | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. +optional. (optional)
-    delete_options_preconditions_uid = "deleteOptions.preconditions.uid_example" # str | Specifies the target UID. +optional. (optional)
-    delete_options_preconditions_resource_version = "deleteOptions.preconditions.resourceVersion_example" # str | Specifies the target ResourceVersion +optional. (optional)
-    delete_options_orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. (optional)
-    delete_options_propagation_policy = "deleteOptions.propagationPolicy_example" # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. +optional. (optional)
-    delete_options_dry_run = [
-        "deleteOptions.dryRun_example",
-    ] # [str] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. (optional)
 
     # example passing only required values which don't have defaults set
+    path_params = {
+        'namespace': "namespace_example",
+        'name': "name_example",
+    }
+    query_params = {
+    }
     try:
-        api_response = api_instance.delete_sensor(namespace, name)
+        api_response = api_instance.delete_sensor(
+            path_params=path_params,
+            query_params=query_params,
+        )
         pprint(api_response)
     except argo_workflows.ApiException as e:
         print("Exception when calling SensorServiceApi->delete_sensor: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
+    # example passing only optional values
+    path_params = {
+        'namespace': "namespace_example",
+        'name': "name_example",
+    }
+    query_params = {
+        'deleteOptions.gracePeriodSeconds': "deleteOptions.gracePeriodSeconds_example",
+        'deleteOptions.preconditions.uid': "deleteOptions.preconditions.uid_example",
+        'deleteOptions.preconditions.resourceVersion': "deleteOptions.preconditions.resourceVersion_example",
+        'deleteOptions.orphanDependents': True,
+        'deleteOptions.propagationPolicy': "deleteOptions.propagationPolicy_example",
+        'deleteOptions.dryRun': [
+        "deleteOptions.dryRun_example"
+    ],
+    }
     try:
-        api_response = api_instance.delete_sensor(namespace, name, delete_options_grace_period_seconds=delete_options_grace_period_seconds, delete_options_preconditions_uid=delete_options_preconditions_uid, delete_options_preconditions_resource_version=delete_options_preconditions_resource_version, delete_options_orphan_dependents=delete_options_orphan_dependents, delete_options_propagation_policy=delete_options_propagation_policy, delete_options_dry_run=delete_options_dry_run)
+        api_response = api_instance.delete_sensor(
+            path_params=path_params,
+            query_params=query_params,
+        )
         pprint(api_response)
     except argo_workflows.ApiException as e:
         print("Exception when calling SensorServiceApi->delete_sensor: %s\n" % e)
 ```
-
-
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **str**|  |
- **name** | **str**|  |
- **delete_options_grace_period_seconds** | **str**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. +optional. | [optional]
- **delete_options_preconditions_uid** | **str**| Specifies the target UID. +optional. | [optional]
- **delete_options_preconditions_resource_version** | **str**| Specifies the target ResourceVersion +optional. | [optional]
- **delete_options_orphan_dependents** | **bool**| Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. +optional. | [optional]
- **delete_options_propagation_policy** | **str**| Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. +optional. | [optional]
- **delete_options_dry_run** | **[str]**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed +optional. | [optional]
+query_params | RequestQueryParams | |
+path_params | RequestPathParams | |
+accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
 
-### Return type
+### query_params
+#### RequestQueryParams
 
-**bool, date, datetime, dict, float, int, list, str, none_type**
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+deleteOptions.gracePeriodSeconds | DeleteOptionsGracePeriodSecondsSchema | | optional
+deleteOptions.preconditions.uid | DeleteOptionsPreconditionsUidSchema | | optional
+deleteOptions.preconditions.resourceVersion | DeleteOptionsPreconditionsResourceVersionSchema | | optional
+deleteOptions.orphanDependents | DeleteOptionsOrphanDependentsSchema | | optional
+deleteOptions.propagationPolicy | DeleteOptionsPropagationPolicySchema | | optional
+deleteOptions.dryRun | DeleteOptionsDryRunSchema | | optional
+
+
+#### DeleteOptionsGracePeriodSecondsSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### DeleteOptionsPreconditionsUidSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### DeleteOptionsPreconditionsResourceVersionSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### DeleteOptionsOrphanDependentsSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**bool** |  | 
+
+#### DeleteOptionsPropagationPolicySchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### DeleteOptionsDryRunSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**[str]** |  | 
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+namespace | NamespaceSchema | | 
+name | NameSchema | | 
+
+#### NamespaceSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### NameSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | ApiResponseFor200 | A successful response.
+default | ApiResponseForDefault | An unexpected error response.
+
+#### ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor200ResponseBodyApplicationJson
+
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+#### ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**GrpcGatewayRuntimeError**](GrpcGatewayRuntimeError.md) |  | 
+
+
+
+**{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**
 
 ### Authorization
 
 [BearerToken](../README.md#BearerToken)
 
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**0** | An unexpected error response. |  -  |
-
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_sensor**
-> IoArgoprojEventsV1alpha1Sensor get_sensor(namespace, name)
+> IoArgoprojEventsV1alpha1Sensor get_sensor(namespacename)
 
 
 
@@ -1968,7 +1254,6 @@ Name | Type | Description  | Notes
 
 * Api Key Authentication (BearerToken):
 ```python
-import time
 import argo_workflows
 from argo_workflows.api import sensor_service_api
 from argo_workflows.model.grpc_gateway_runtime_error import GrpcGatewayRuntimeError
@@ -1990,59 +1275,129 @@ configuration.api_key['BearerToken'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['BearerToken'] = 'Bearer'
-
 # Enter a context with an instance of the API client
 with argo_workflows.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = sensor_service_api.SensorServiceApi(api_client)
-    namespace = "namespace_example" # str | 
-    name = "name_example" # str | 
-    get_options_resource_version = "getOptions.resourceVersion_example" # str | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)
 
     # example passing only required values which don't have defaults set
+    path_params = {
+        'namespace': "namespace_example",
+        'name': "name_example",
+    }
+    query_params = {
+    }
     try:
-        api_response = api_instance.get_sensor(namespace, name)
+        api_response = api_instance.get_sensor(
+            path_params=path_params,
+            query_params=query_params,
+        )
         pprint(api_response)
     except argo_workflows.ApiException as e:
         print("Exception when calling SensorServiceApi->get_sensor: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
+    # example passing only optional values
+    path_params = {
+        'namespace': "namespace_example",
+        'name': "name_example",
+    }
+    query_params = {
+        'getOptions.resourceVersion': "getOptions.resourceVersion_example",
+    }
     try:
-        api_response = api_instance.get_sensor(namespace, name, get_options_resource_version=get_options_resource_version)
+        api_response = api_instance.get_sensor(
+            path_params=path_params,
+            query_params=query_params,
+        )
         pprint(api_response)
     except argo_workflows.ApiException as e:
         print("Exception when calling SensorServiceApi->get_sensor: %s\n" % e)
 ```
-
-
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **str**|  |
- **name** | **str**|  |
- **get_options_resource_version** | **str**| resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional | [optional]
+query_params | RequestQueryParams | |
+path_params | RequestPathParams | |
+accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
 
-### Return type
+### query_params
+#### RequestQueryParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+getOptions.resourceVersion | GetOptionsResourceVersionSchema | | optional
+
+
+#### GetOptionsResourceVersionSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+namespace | NamespaceSchema | | 
+name | NameSchema | | 
+
+#### NamespaceSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### NameSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | ApiResponseFor200 | A successful response.
+default | ApiResponseForDefault | An unexpected error response.
+
+#### ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor200ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**IoArgoprojEventsV1alpha1Sensor**](IoArgoprojEventsV1alpha1Sensor.md) |  | 
+
+
+#### ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**GrpcGatewayRuntimeError**](GrpcGatewayRuntimeError.md) |  | 
+
+
 
 [**IoArgoprojEventsV1alpha1Sensor**](IoArgoprojEventsV1alpha1Sensor.md)
 
 ### Authorization
 
 [BearerToken](../README.md#BearerToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**0** | An unexpected error response. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2055,7 +1410,6 @@ Name | Type | Description  | Notes
 
 * Api Key Authentication (BearerToken):
 ```python
-import time
 import argo_workflows
 from argo_workflows.api import sensor_service_api
 from argo_workflows.model.grpc_gateway_runtime_error import GrpcGatewayRuntimeError
@@ -2077,55 +1431,178 @@ configuration.api_key['BearerToken'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['BearerToken'] = 'Bearer'
-
 # Enter a context with an instance of the API client
 with argo_workflows.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = sensor_service_api.SensorServiceApi(api_client)
-    namespace = "namespace_example" # str | 
-    list_options_label_selector = "listOptions.labelSelector_example" # str | A selector to restrict the list of returned objects by their labels. Defaults to everything. +optional. (optional)
-    list_options_field_selector = "listOptions.fieldSelector_example" # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. +optional. (optional)
-    list_options_watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. +optional. (optional)
-    list_options_allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. +optional. (optional)
-    list_options_resource_version = "listOptions.resourceVersion_example" # str | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)
-    list_options_resource_version_match = "listOptions.resourceVersionMatch_example" # str | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)
-    list_options_timeout_seconds = "listOptions.timeoutSeconds_example" # str | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)
-    list_options_limit = "listOptions.limit_example" # str | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
-    list_options_continue = "listOptions.continue_example" # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 
     # example passing only required values which don't have defaults set
+    path_params = {
+        'namespace': "namespace_example",
+    }
+    query_params = {
+    }
     try:
-        api_response = api_instance.list_sensors(namespace)
+        api_response = api_instance.list_sensors(
+            path_params=path_params,
+            query_params=query_params,
+        )
         pprint(api_response)
     except argo_workflows.ApiException as e:
         print("Exception when calling SensorServiceApi->list_sensors: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
+    # example passing only optional values
+    path_params = {
+        'namespace': "namespace_example",
+    }
+    query_params = {
+        'listOptions.labelSelector': "listOptions.labelSelector_example",
+        'listOptions.fieldSelector': "listOptions.fieldSelector_example",
+        'listOptions.watch': True,
+        'listOptions.allowWatchBookmarks': True,
+        'listOptions.resourceVersion': "listOptions.resourceVersion_example",
+        'listOptions.resourceVersionMatch': "listOptions.resourceVersionMatch_example",
+        'listOptions.timeoutSeconds': "listOptions.timeoutSeconds_example",
+        'listOptions.limit': "listOptions.limit_example",
+        'listOptions.continue': "listOptions.continue_example",
+    }
     try:
-        api_response = api_instance.list_sensors(namespace, list_options_label_selector=list_options_label_selector, list_options_field_selector=list_options_field_selector, list_options_watch=list_options_watch, list_options_allow_watch_bookmarks=list_options_allow_watch_bookmarks, list_options_resource_version=list_options_resource_version, list_options_resource_version_match=list_options_resource_version_match, list_options_timeout_seconds=list_options_timeout_seconds, list_options_limit=list_options_limit, list_options_continue=list_options_continue)
+        api_response = api_instance.list_sensors(
+            path_params=path_params,
+            query_params=query_params,
+        )
         pprint(api_response)
     except argo_workflows.ApiException as e:
         print("Exception when calling SensorServiceApi->list_sensors: %s\n" % e)
 ```
-
-
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **str**|  |
- **list_options_label_selector** | **str**| A selector to restrict the list of returned objects by their labels. Defaults to everything. +optional. | [optional]
- **list_options_field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. +optional. | [optional]
- **list_options_watch** | **bool**| Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. +optional. | [optional]
- **list_options_allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. +optional. | [optional]
- **list_options_resource_version** | **str**| resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional | [optional]
- **list_options_resource_version_match** | **str**| resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional | [optional]
- **list_options_timeout_seconds** | **str**| Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. | [optional]
- **list_options_limit** | **str**| limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | [optional]
- **list_options_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional]
+query_params | RequestQueryParams | |
+path_params | RequestPathParams | |
+accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
 
-### Return type
+### query_params
+#### RequestQueryParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+listOptions.labelSelector | ListOptionsLabelSelectorSchema | | optional
+listOptions.fieldSelector | ListOptionsFieldSelectorSchema | | optional
+listOptions.watch | ListOptionsWatchSchema | | optional
+listOptions.allowWatchBookmarks | ListOptionsAllowWatchBookmarksSchema | | optional
+listOptions.resourceVersion | ListOptionsResourceVersionSchema | | optional
+listOptions.resourceVersionMatch | ListOptionsResourceVersionMatchSchema | | optional
+listOptions.timeoutSeconds | ListOptionsTimeoutSecondsSchema | | optional
+listOptions.limit | ListOptionsLimitSchema | | optional
+listOptions.continue | ListOptionsContinueSchema | | optional
+
+
+#### ListOptionsLabelSelectorSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### ListOptionsFieldSelectorSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### ListOptionsWatchSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**bool** |  | 
+
+#### ListOptionsAllowWatchBookmarksSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**bool** |  | 
+
+#### ListOptionsResourceVersionSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### ListOptionsResourceVersionMatchSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### ListOptionsTimeoutSecondsSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### ListOptionsLimitSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### ListOptionsContinueSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+namespace | NamespaceSchema | | 
+
+#### NamespaceSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | ApiResponseFor200 | A successful response.
+default | ApiResponseForDefault | An unexpected error response.
+
+#### ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor200ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**IoArgoprojEventsV1alpha1SensorList**](IoArgoprojEventsV1alpha1SensorList.md) |  | 
+
+
+#### ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**GrpcGatewayRuntimeError**](GrpcGatewayRuntimeError.md) |  | 
+
+
 
 [**IoArgoprojEventsV1alpha1SensorList**](IoArgoprojEventsV1alpha1SensorList.md)
 
@@ -2133,22 +1610,10 @@ Name | Type | Description  | Notes
 
 [BearerToken](../README.md#BearerToken)
 
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**0** | An unexpected error response. |  -  |
-
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **sensors_logs**
-> StreamResultOfSensorLogEntry sensors_logs(namespace)
+> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} sensors_logs(namespace)
 
 
 
@@ -2156,11 +1621,11 @@ Name | Type | Description  | Notes
 
 * Api Key Authentication (BearerToken):
 ```python
-import time
 import argo_workflows
 from argo_workflows.api import sensor_service_api
 from argo_workflows.model.grpc_gateway_runtime_error import GrpcGatewayRuntimeError
-from argo_workflows.model.stream_result_of_sensor_log_entry import StreamResultOfSensorLogEntry
+from argo_workflows.model.sensor_log_entry import SensorLogEntry
+from argo_workflows.model.grpc_gateway_runtime_stream_error import GrpcGatewayRuntimeStreamError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost:2746
 # See configuration.py for a list of all supported configuration parameters.
@@ -2178,86 +1643,224 @@ configuration.api_key['BearerToken'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['BearerToken'] = 'Bearer'
-
 # Enter a context with an instance of the API client
 with argo_workflows.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = sensor_service_api.SensorServiceApi(api_client)
-    namespace = "namespace_example" # str | 
-    name = "name_example" # str | optional - only return entries for this sensor name. (optional)
-    trigger_name = "triggerName_example" # str | optional - only return entries for this trigger. (optional)
-    grep = "grep_example" # str | option - only return entries where `msg` contains this regular expressions. (optional)
-    pod_log_options_container = "podLogOptions.container_example" # str | The container for which to stream logs. Defaults to only container if there is one container in the pod. +optional. (optional)
-    pod_log_options_follow = True # bool | Follow the log stream of the pod. Defaults to false. +optional. (optional)
-    pod_log_options_previous = True # bool | Return previous terminated container logs. Defaults to false. +optional. (optional)
-    pod_log_options_since_seconds = "podLogOptions.sinceSeconds_example" # str | A relative time in seconds before the current time from which to show logs. If this value precedes the time a pod was started, only logs since the pod start will be returned. If this value is in the future, no logs will be returned. Only one of sinceSeconds or sinceTime may be specified. +optional. (optional)
-    pod_log_options_since_time_seconds = "podLogOptions.sinceTime.seconds_example" # str | Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive. (optional)
-    pod_log_options_since_time_nanos = 1 # int | Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive. This field may be limited in precision depending on context. (optional)
-    pod_log_options_timestamps = True # bool | If true, add an RFC3339 or RFC3339Nano timestamp at the beginning of every line of log output. Defaults to false. +optional. (optional)
-    pod_log_options_tail_lines = "podLogOptions.tailLines_example" # str | If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime +optional. (optional)
-    pod_log_options_limit_bytes = "podLogOptions.limitBytes_example" # str | If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit. +optional. (optional)
-    pod_log_options_insecure_skip_tls_verify_backend = True # bool | insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver's TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet). +optional. (optional)
 
     # example passing only required values which don't have defaults set
+    path_params = {
+        'namespace': "namespace_example",
+    }
+    query_params = {
+    }
     try:
-        api_response = api_instance.sensors_logs(namespace)
+        api_response = api_instance.sensors_logs(
+            path_params=path_params,
+            query_params=query_params,
+        )
         pprint(api_response)
     except argo_workflows.ApiException as e:
         print("Exception when calling SensorServiceApi->sensors_logs: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
+    # example passing only optional values
+    path_params = {
+        'namespace': "namespace_example",
+    }
+    query_params = {
+        'name': "name_example",
+        'triggerName': "triggerName_example",
+        'grep': "grep_example",
+        'podLogOptions.container': "podLogOptions.container_example",
+        'podLogOptions.follow': True,
+        'podLogOptions.previous': True,
+        'podLogOptions.sinceSeconds': "podLogOptions.sinceSeconds_example",
+        'podLogOptions.sinceTime.seconds': "podLogOptions.sinceTime.seconds_example",
+        'podLogOptions.sinceTime.nanos': 1,
+        'podLogOptions.timestamps': True,
+        'podLogOptions.tailLines': "podLogOptions.tailLines_example",
+        'podLogOptions.limitBytes': "podLogOptions.limitBytes_example",
+        'podLogOptions.insecureSkipTLSVerifyBackend': True,
+    }
     try:
-        api_response = api_instance.sensors_logs(namespace, name=name, trigger_name=trigger_name, grep=grep, pod_log_options_container=pod_log_options_container, pod_log_options_follow=pod_log_options_follow, pod_log_options_previous=pod_log_options_previous, pod_log_options_since_seconds=pod_log_options_since_seconds, pod_log_options_since_time_seconds=pod_log_options_since_time_seconds, pod_log_options_since_time_nanos=pod_log_options_since_time_nanos, pod_log_options_timestamps=pod_log_options_timestamps, pod_log_options_tail_lines=pod_log_options_tail_lines, pod_log_options_limit_bytes=pod_log_options_limit_bytes, pod_log_options_insecure_skip_tls_verify_backend=pod_log_options_insecure_skip_tls_verify_backend)
+        api_response = api_instance.sensors_logs(
+            path_params=path_params,
+            query_params=query_params,
+        )
         pprint(api_response)
     except argo_workflows.ApiException as e:
         print("Exception when calling SensorServiceApi->sensors_logs: %s\n" % e)
 ```
-
-
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **str**|  |
- **name** | **str**| optional - only return entries for this sensor name. | [optional]
- **trigger_name** | **str**| optional - only return entries for this trigger. | [optional]
- **grep** | **str**| option - only return entries where &#x60;msg&#x60; contains this regular expressions. | [optional]
- **pod_log_options_container** | **str**| The container for which to stream logs. Defaults to only container if there is one container in the pod. +optional. | [optional]
- **pod_log_options_follow** | **bool**| Follow the log stream of the pod. Defaults to false. +optional. | [optional]
- **pod_log_options_previous** | **bool**| Return previous terminated container logs. Defaults to false. +optional. | [optional]
- **pod_log_options_since_seconds** | **str**| A relative time in seconds before the current time from which to show logs. If this value precedes the time a pod was started, only logs since the pod start will be returned. If this value is in the future, no logs will be returned. Only one of sinceSeconds or sinceTime may be specified. +optional. | [optional]
- **pod_log_options_since_time_seconds** | **str**| Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59Z inclusive. | [optional]
- **pod_log_options_since_time_nanos** | **int**| Non-negative fractions of a second at nanosecond resolution. Negative second values with fractions must still have non-negative nanos values that count forward in time. Must be from 0 to 999,999,999 inclusive. This field may be limited in precision depending on context. | [optional]
- **pod_log_options_timestamps** | **bool**| If true, add an RFC3339 or RFC3339Nano timestamp at the beginning of every line of log output. Defaults to false. +optional. | [optional]
- **pod_log_options_tail_lines** | **str**| If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime +optional. | [optional]
- **pod_log_options_limit_bytes** | **str**| If set, the number of bytes to read from the server before terminating the log output. This may not display a complete final line of logging, and may return slightly more or slightly less than the specified limit. +optional. | [optional]
- **pod_log_options_insecure_skip_tls_verify_backend** | **bool**| insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver&#39;s TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet). +optional. | [optional]
+query_params | RequestQueryParams | |
+path_params | RequestPathParams | |
+accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
 
-### Return type
+### query_params
+#### RequestQueryParams
 
-[**StreamResultOfSensorLogEntry**](StreamResultOfSensorLogEntry.md)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+name | NameSchema | | optional
+triggerName | TriggerNameSchema | | optional
+grep | GrepSchema | | optional
+podLogOptions.container | PodLogOptionsContainerSchema | | optional
+podLogOptions.follow | PodLogOptionsFollowSchema | | optional
+podLogOptions.previous | PodLogOptionsPreviousSchema | | optional
+podLogOptions.sinceSeconds | PodLogOptionsSinceSecondsSchema | | optional
+podLogOptions.sinceTime.seconds | PodLogOptionsSinceTimeSecondsSchema | | optional
+podLogOptions.sinceTime.nanos | PodLogOptionsSinceTimeNanosSchema | | optional
+podLogOptions.timestamps | PodLogOptionsTimestampsSchema | | optional
+podLogOptions.tailLines | PodLogOptionsTailLinesSchema | | optional
+podLogOptions.limitBytes | PodLogOptionsLimitBytesSchema | | optional
+podLogOptions.insecureSkipTLSVerifyBackend | PodLogOptionsInsecureSkipTLSVerifyBackendSchema | | optional
+
+
+#### NameSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### TriggerNameSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### GrepSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### PodLogOptionsContainerSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### PodLogOptionsFollowSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**bool** |  | 
+
+#### PodLogOptionsPreviousSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**bool** |  | 
+
+#### PodLogOptionsSinceSecondsSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### PodLogOptionsSinceTimeSecondsSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### PodLogOptionsSinceTimeNanosSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**int** |  | 
+
+#### PodLogOptionsTimestampsSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**bool** |  | 
+
+#### PodLogOptionsTailLinesSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### PodLogOptionsLimitBytesSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### PodLogOptionsInsecureSkipTLSVerifyBackendSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**bool** |  | 
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+namespace | NamespaceSchema | | 
+
+#### NamespaceSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | ApiResponseFor200 | A successful response.(streaming responses)
+default | ApiResponseForDefault | An unexpected error response.
+
+#### ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor200ResponseBodyApplicationJson
+
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**error** | [**GrpcGatewayRuntimeStreamError**](GrpcGatewayRuntimeStreamError.md) |  | [optional] 
+**result** | [**SensorLogEntry**](SensorLogEntry.md) |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+#### ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**GrpcGatewayRuntimeError**](GrpcGatewayRuntimeError.md) |  | 
+
+
+
+**{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**
 
 ### Authorization
 
 [BearerToken](../README.md#BearerToken)
 
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A successful response.(streaming responses) |  -  |
-**0** | An unexpected error response. |  -  |
-
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_sensor**
-> IoArgoprojEventsV1alpha1Sensor update_sensor(namespace, name, body)
+> IoArgoprojEventsV1alpha1Sensor update_sensor(namespacenamebody)
 
 
 
@@ -2265,7 +1868,6 @@ Name | Type | Description  | Notes
 
 * Api Key Authentication (BearerToken):
 ```python
-import time
 import argo_workflows
 from argo_workflows.api import sensor_service_api
 from argo_workflows.model.grpc_gateway_runtime_error import GrpcGatewayRuntimeError
@@ -2288,43 +1890,46 @@ configuration.api_key['BearerToken'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['BearerToken'] = 'Bearer'
-
 # Enter a context with an instance of the API client
 with argo_workflows.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = sensor_service_api.SensorServiceApi(api_client)
-    namespace = "namespace_example" # str | 
-    name = "name_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    path_params = {
+        'namespace': "namespace_example",
+        'name': "name_example",
+    }
     body = SensorUpdateSensorRequest(
         name="name_example",
         namespace="namespace_example",
         sensor=IoArgoprojEventsV1alpha1Sensor(
             metadata=ObjectMeta(
-                annotations={
+                annotations=dict(
                     "key": "key_example",
-                },
+                ),
                 cluster_name="cluster_name_example",
-                creation_timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                creation_timestamp="1970-01-01T00:00:00.00Z",
                 deletion_grace_period_seconds=1,
-                deletion_timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                deletion_timestamp="1970-01-01T00:00:00.00Z",
                 finalizers=[
-                    "finalizers_example",
+                    "finalizers_example"
                 ],
                 generate_name="generate_name_example",
                 generation=1,
-                labels={
+                labels=dict(
                     "key": "key_example",
-                },
+                ),
                 managed_fields=[
                     ManagedFieldsEntry(
                         api_version="api_version_example",
                         fields_type="fields_type_example",
-                        fields_v1={},
+                        fields_v1=dict(),
                         manager="manager_example",
                         operation="operation_example",
                         subresource="subresource_example",
-                        time=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                    ),
+                        time="1970-01-01T00:00:00.00Z",
+                    )
                 ],
                 name="name_example",
                 namespace="namespace_example",
@@ -2336,7 +1941,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                         kind="kind_example",
                         name="name_example",
                         uid="uid_example",
-                    ),
+                    )
                 ],
                 resource_version="resource_version_example",
                 self_link="self_link_example",
@@ -2354,7 +1959,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 source="source_example",
                                 specversion="specversion_example",
                                 subject="subject_example",
-                                time=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                                time="1970-01-01T00:00:00.00Z",
                                 type="type_example",
                             ),
                             data=[
@@ -2364,9 +1969,9 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                     template="template_example",
                                     type="type_example",
                                     value=[
-                                        "value_example",
+                                        "value_example"
                                     ],
-                                ),
+                                )
                             ],
                             data_logical_operator="data_logical_operator_example",
                             expr_logical_operator="expr_logical_operator_example",
@@ -2377,9 +1982,9 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         IoArgoprojEventsV1alpha1PayloadField(
                                             name="name_example",
                                             path="path_example",
-                                        ),
+                                        )
                                     ],
-                                ),
+                                )
                             ],
                             time=IoArgoprojEventsV1alpha1TimeFilter(
                                 start="start_example",
@@ -2392,7 +1997,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             jq="jq_example",
                             script="script_example",
                         ),
-                    ),
+                    )
                 ],
                 error_on_failed_round=True,
                 event_bus_name="event_bus_name_example",
@@ -2408,45 +2013,20 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                                 key="key_example",
                                                 operator="DoesNotExist",
                                                 values=[
-                                                    "values_example",
+                                                    "values_example"
                                                 ],
-                                            ),
+                                            )
                                         ],
                                         match_fields=[
-                                            NodeSelectorRequirement(
-                                                key="key_example",
-                                                operator="DoesNotExist",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
+                                            NodeSelectorRequirement()
                                         ],
                                     ),
                                     weight=1,
-                                ),
+                                )
                             ],
                             required_during_scheduling_ignored_during_execution=NodeSelector(
                                 node_selector_terms=[
-                                    NodeSelectorTerm(
-                                        match_expressions=[
-                                            NodeSelectorRequirement(
-                                                key="key_example",
-                                                operator="DoesNotExist",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
-                                        ],
-                                        match_fields=[
-                                            NodeSelectorRequirement(
-                                                key="key_example",
-                                                operator="DoesNotExist",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
-                                        ],
-                                    ),
+                                    NodeSelectorTerm()
                                 ],
                             ),
                         ),
@@ -2460,157 +2040,42 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                                     key="key_example",
                                                     operator="operator_example",
                                                     values=[
-                                                        "values_example",
+                                                        "values_example"
                                                     ],
-                                                ),
+                                                )
                                             ],
-                                            match_labels={
+                                            match_labels=dict(
                                                 "key": "key_example",
-                                            },
+                                            ),
                                         ),
-                                        namespace_selector=LabelSelector(
-                                            match_expressions=[
-                                                LabelSelectorRequirement(
-                                                    key="key_example",
-                                                    operator="operator_example",
-                                                    values=[
-                                                        "values_example",
-                                                    ],
-                                                ),
-                                            ],
-                                            match_labels={
-                                                "key": "key_example",
-                                            },
-                                        ),
+                                        namespace_selector=LabelSelector(),
                                         namespaces=[
-                                            "namespaces_example",
+                                            "namespaces_example"
                                         ],
                                         topology_key="topology_key_example",
                                     ),
                                     weight=1,
-                                ),
+                                )
                             ],
                             required_during_scheduling_ignored_during_execution=[
-                                PodAffinityTerm(
-                                    label_selector=LabelSelector(
-                                        match_expressions=[
-                                            LabelSelectorRequirement(
-                                                key="key_example",
-                                                operator="operator_example",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
-                                        ],
-                                        match_labels={
-                                            "key": "key_example",
-                                        },
-                                    ),
-                                    namespace_selector=LabelSelector(
-                                        match_expressions=[
-                                            LabelSelectorRequirement(
-                                                key="key_example",
-                                                operator="operator_example",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
-                                        ],
-                                        match_labels={
-                                            "key": "key_example",
-                                        },
-                                    ),
-                                    namespaces=[
-                                        "namespaces_example",
-                                    ],
-                                    topology_key="topology_key_example",
-                                ),
+                                PodAffinityTerm()
                             ],
                         ),
                         pod_anti_affinity=PodAntiAffinity(
                             preferred_during_scheduling_ignored_during_execution=[
-                                WeightedPodAffinityTerm(
-                                    pod_affinity_term=PodAffinityTerm(
-                                        label_selector=LabelSelector(
-                                            match_expressions=[
-                                                LabelSelectorRequirement(
-                                                    key="key_example",
-                                                    operator="operator_example",
-                                                    values=[
-                                                        "values_example",
-                                                    ],
-                                                ),
-                                            ],
-                                            match_labels={
-                                                "key": "key_example",
-                                            },
-                                        ),
-                                        namespace_selector=LabelSelector(
-                                            match_expressions=[
-                                                LabelSelectorRequirement(
-                                                    key="key_example",
-                                                    operator="operator_example",
-                                                    values=[
-                                                        "values_example",
-                                                    ],
-                                                ),
-                                            ],
-                                            match_labels={
-                                                "key": "key_example",
-                                            },
-                                        ),
-                                        namespaces=[
-                                            "namespaces_example",
-                                        ],
-                                        topology_key="topology_key_example",
-                                    ),
-                                    weight=1,
-                                ),
+                                WeightedPodAffinityTerm()
                             ],
                             required_during_scheduling_ignored_during_execution=[
-                                PodAffinityTerm(
-                                    label_selector=LabelSelector(
-                                        match_expressions=[
-                                            LabelSelectorRequirement(
-                                                key="key_example",
-                                                operator="operator_example",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
-                                        ],
-                                        match_labels={
-                                            "key": "key_example",
-                                        },
-                                    ),
-                                    namespace_selector=LabelSelector(
-                                        match_expressions=[
-                                            LabelSelectorRequirement(
-                                                key="key_example",
-                                                operator="operator_example",
-                                                values=[
-                                                    "values_example",
-                                                ],
-                                            ),
-                                        ],
-                                        match_labels={
-                                            "key": "key_example",
-                                        },
-                                    ),
-                                    namespaces=[
-                                        "namespaces_example",
-                                    ],
-                                    topology_key="topology_key_example",
-                                ),
+                                PodAffinityTerm()
                             ],
                         ),
                     ),
                     container=Container(
                         args=[
-                            "args_example",
+                            "args_example"
                         ],
                         command=[
-                            "command_example",
+                            "command_example"
                         ],
                         env=[
                             EnvVar(
@@ -2637,7 +2102,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         optional=True,
                                     ),
                                 ),
-                            ),
+                            )
                         ],
                         env_from=[
                             EnvFromSource(
@@ -2650,7 +2115,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                     name="name_example",
                                     optional=True,
                                 ),
-                            ),
+                            )
                         ],
                         image="image_example",
                         image_pull_policy="Always",
@@ -2658,7 +2123,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             post_start=LifecycleHandler(
                                 _exec=ExecAction(
                                     command=[
-                                        "command_example",
+                                        "command_example"
                                     ],
                                 ),
                                 http_get=HTTPGetAction(
@@ -2667,7 +2132,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         HTTPHeader(
                                             name="name_example",
                                             value="value_example",
-                                        ),
+                                        )
                                     ],
                                     path="path_example",
                                     port="port_example",
@@ -2678,60 +2143,20 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                     port="port_example",
                                 ),
                             ),
-                            pre_stop=LifecycleHandler(
-                                _exec=ExecAction(
-                                    command=[
-                                        "command_example",
-                                    ],
-                                ),
-                                http_get=HTTPGetAction(
-                                    host="host_example",
-                                    http_headers=[
-                                        HTTPHeader(
-                                            name="name_example",
-                                            value="value_example",
-                                        ),
-                                    ],
-                                    path="path_example",
-                                    port="port_example",
-                                    scheme="HTTP",
-                                ),
-                                tcp_socket=TCPSocketAction(
-                                    host="host_example",
-                                    port="port_example",
-                                ),
-                            ),
+                            pre_stop=LifecycleHandler(),
                         ),
                         liveness_probe=Probe(
-                            _exec=ExecAction(
-                                command=[
-                                    "command_example",
-                                ],
-                            ),
+                            _exec=ExecAction(),
                             failure_threshold=1,
                             grpc=GRPCAction(
                                 port=1,
                                 service="service_example",
                             ),
-                            http_get=HTTPGetAction(
-                                host="host_example",
-                                http_headers=[
-                                    HTTPHeader(
-                                        name="name_example",
-                                        value="value_example",
-                                    ),
-                                ],
-                                path="path_example",
-                                port="port_example",
-                                scheme="HTTP",
-                            ),
+                            http_get=HTTPGetAction(),
                             initial_delay_seconds=1,
                             period_seconds=1,
                             success_threshold=1,
-                            tcp_socket=TCPSocketAction(
-                                host="host_example",
-                                port="port_example",
-                            ),
+                            tcp_socket=TCPSocketAction(),
                             termination_grace_period_seconds=1,
                             timeout_seconds=1,
                         ),
@@ -2743,57 +2168,25 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 host_port=1,
                                 name="name_example",
                                 protocol="SCTP",
-                            ),
+                            )
                         ],
-                        readiness_probe=Probe(
-                            _exec=ExecAction(
-                                command=[
-                                    "command_example",
-                                ],
-                            ),
-                            failure_threshold=1,
-                            grpc=GRPCAction(
-                                port=1,
-                                service="service_example",
-                            ),
-                            http_get=HTTPGetAction(
-                                host="host_example",
-                                http_headers=[
-                                    HTTPHeader(
-                                        name="name_example",
-                                        value="value_example",
-                                    ),
-                                ],
-                                path="path_example",
-                                port="port_example",
-                                scheme="HTTP",
-                            ),
-                            initial_delay_seconds=1,
-                            period_seconds=1,
-                            success_threshold=1,
-                            tcp_socket=TCPSocketAction(
-                                host="host_example",
-                                port="port_example",
-                            ),
-                            termination_grace_period_seconds=1,
-                            timeout_seconds=1,
-                        ),
+                        readiness_probe=Probe(),
                         resources=ResourceRequirements(
-                            limits={
+                            limits=dict(
                                 "key": "key_example",
-                            },
-                            requests={
+                            ),
+                            requests=dict(
                                 "key": "key_example",
-                            },
+                            ),
                         ),
                         security_context=SecurityContext(
                             allow_privilege_escalation=True,
                             capabilities=Capabilities(
                                 add=[
-                                    "add_example",
+                                    "add_example"
                                 ],
                                 drop=[
-                                    "drop_example",
+                                    "drop_example"
                                 ],
                             ),
                             privileged=True,
@@ -2819,39 +2212,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 run_as_user_name="run_as_user_name_example",
                             ),
                         ),
-                        startup_probe=Probe(
-                            _exec=ExecAction(
-                                command=[
-                                    "command_example",
-                                ],
-                            ),
-                            failure_threshold=1,
-                            grpc=GRPCAction(
-                                port=1,
-                                service="service_example",
-                            ),
-                            http_get=HTTPGetAction(
-                                host="host_example",
-                                http_headers=[
-                                    HTTPHeader(
-                                        name="name_example",
-                                        value="value_example",
-                                    ),
-                                ],
-                                path="path_example",
-                                port="port_example",
-                                scheme="HTTP",
-                            ),
-                            initial_delay_seconds=1,
-                            period_seconds=1,
-                            success_threshold=1,
-                            tcp_socket=TCPSocketAction(
-                                host="host_example",
-                                port="port_example",
-                            ),
-                            termination_grace_period_seconds=1,
-                            timeout_seconds=1,
-                        ),
+                        startup_probe=Probe(),
                         stdin=True,
                         stdin_once=True,
                         termination_message_path="termination_message_path_example",
@@ -2861,7 +2222,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             VolumeDevice(
                                 device_path="device_path_example",
                                 name="name_example",
-                            ),
+                            )
                         ],
                         volume_mounts=[
                             VolumeMount(
@@ -2871,26 +2232,24 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 read_only=True,
                                 sub_path="sub_path_example",
                                 sub_path_expr="sub_path_expr_example",
-                            ),
+                            )
                         ],
                         working_dir="working_dir_example",
                     ),
                     image_pull_secrets=[
                         LocalObjectReference(
                             name="name_example",
-                        ),
+                        )
                     ],
                     metadata=IoArgoprojEventsV1alpha1Metadata(
-                        annotations={
+                        annotations=dict(
                             "key": "key_example",
-                        },
-                        labels={
-                            "key": "key_example",
-                        },
+                        ),
+                        labels=dict(),
                     ),
-                    node_selector={
+                    node_selector=dict(
                         "key": "key_example",
-                    },
+                    ),
                     priority=1,
                     priority_class_name="priority_class_name_example",
                     security_context=PodSecurityContext(
@@ -2899,31 +2258,18 @@ with argo_workflows.ApiClient(configuration) as api_client:
                         run_as_group=1,
                         run_as_non_root=True,
                         run_as_user=1,
-                        se_linux_options=SELinuxOptions(
-                            level="level_example",
-                            role="role_example",
-                            type="type_example",
-                            user="user_example",
-                        ),
-                        seccomp_profile=SeccompProfile(
-                            localhost_profile="localhost_profile_example",
-                            type="Localhost",
-                        ),
+                        se_linux_options=SELinuxOptions(),
+                        seccomp_profile=SeccompProfile(),
                         supplemental_groups=[
-                            1,
+                            1
                         ],
                         sysctls=[
                             Sysctl(
                                 name="name_example",
                                 value="value_example",
-                            ),
+                            )
                         ],
-                        windows_options=WindowsSecurityContextOptions(
-                            gmsa_credential_spec="gmsa_credential_spec_example",
-                            gmsa_credential_spec_name="gmsa_credential_spec_name_example",
-                            host_process=True,
-                            run_as_user_name="run_as_user_name_example",
-                        ),
+                        windows_options=WindowsSecurityContextOptions(),
                     ),
                     service_account_name="service_account_name_example",
                     tolerations=[
@@ -2933,7 +2279,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             operator="Equal",
                             toleration_seconds=1,
                             value="value_example",
-                        ),
+                        )
                     ],
                     volumes=[
                         Volume(
@@ -2958,22 +2304,18 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             ),
                             cephfs=CephFSVolumeSource(
                                 monitors=[
-                                    "monitors_example",
+                                    "monitors_example"
                                 ],
                                 path="path_example",
                                 read_only=True,
                                 secret_file="secret_file_example",
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                secret_ref=LocalObjectReference(),
                                 user="user_example",
                             ),
                             cinder=CinderVolumeSource(
                                 fs_type="fs_type_example",
                                 read_only=True,
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                secret_ref=LocalObjectReference(),
                                 volume_id="volume_id_example",
                             ),
                             config_map=ConfigMapVolumeSource(
@@ -2983,7 +2325,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         key="key_example",
                                         mode=1,
                                         path="path_example",
-                                    ),
+                                    )
                                 ],
                                 name="name_example",
                                 optional=True,
@@ -2991,30 +2333,21 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             csi=CSIVolumeSource(
                                 driver="driver_example",
                                 fs_type="fs_type_example",
-                                node_publish_secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                node_publish_secret_ref=LocalObjectReference(),
                                 read_only=True,
-                                volume_attributes={
+                                volume_attributes=dict(
                                     "key": "key_example",
-                                },
+                                ),
                             ),
                             downward_api=DownwardAPIVolumeSource(
                                 default_mode=1,
                                 items=[
                                     DownwardAPIVolumeFile(
-                                        field_ref=ObjectFieldSelector(
-                                            api_version="api_version_example",
-                                            field_path="field_path_example",
-                                        ),
+                                        field_ref=ObjectFieldSelector(),
                                         mode=1,
                                         path="path_example",
-                                        resource_field_ref=ResourceFieldSelector(
-                                            container_name="container_name_example",
-                                            divisor="divisor_example",
-                                            resource="resource_example",
-                                        ),
-                                    ),
+                                        resource_field_ref=ResourceFieldSelector(),
+                                    )
                                 ],
                             ),
                             empty_dir=EmptyDirVolumeSource(
@@ -3023,85 +2356,19 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             ),
                             ephemeral=EphemeralVolumeSource(
                                 volume_claim_template=PersistentVolumeClaimTemplate(
-                                    metadata=ObjectMeta(
-                                        annotations={
-                                            "key": "key_example",
-                                        },
-                                        cluster_name="cluster_name_example",
-                                        creation_timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                                        deletion_grace_period_seconds=1,
-                                        deletion_timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                                        finalizers=[
-                                            "finalizers_example",
-                                        ],
-                                        generate_name="generate_name_example",
-                                        generation=1,
-                                        labels={
-                                            "key": "key_example",
-                                        },
-                                        managed_fields=[
-                                            ManagedFieldsEntry(
-                                                api_version="api_version_example",
-                                                fields_type="fields_type_example",
-                                                fields_v1={},
-                                                manager="manager_example",
-                                                operation="operation_example",
-                                                subresource="subresource_example",
-                                                time=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                                            ),
-                                        ],
-                                        name="name_example",
-                                        namespace="namespace_example",
-                                        owner_references=[
-                                            OwnerReference(
-                                                api_version="api_version_example",
-                                                block_owner_deletion=True,
-                                                controller=True,
-                                                kind="kind_example",
-                                                name="name_example",
-                                                uid="uid_example",
-                                            ),
-                                        ],
-                                        resource_version="resource_version_example",
-                                        self_link="self_link_example",
-                                        uid="uid_example",
-                                    ),
+                                    metadata=ObjectMeta(),
                                     spec=PersistentVolumeClaimSpec(
                                         access_modes=[
-                                            "access_modes_example",
+                                            "access_modes_example"
                                         ],
                                         data_source=TypedLocalObjectReference(
                                             api_group="api_group_example",
                                             kind="kind_example",
                                             name="name_example",
                                         ),
-                                        data_source_ref=TypedLocalObjectReference(
-                                            api_group="api_group_example",
-                                            kind="kind_example",
-                                            name="name_example",
-                                        ),
-                                        resources=ResourceRequirements(
-                                            limits={
-                                                "key": "key_example",
-                                            },
-                                            requests={
-                                                "key": "key_example",
-                                            },
-                                        ),
-                                        selector=LabelSelector(
-                                            match_expressions=[
-                                                LabelSelectorRequirement(
-                                                    key="key_example",
-                                                    operator="operator_example",
-                                                    values=[
-                                                        "values_example",
-                                                    ],
-                                                ),
-                                            ],
-                                            match_labels={
-                                                "key": "key_example",
-                                            },
-                                        ),
+                                        data_source_ref=TypedLocalObjectReference(),
+                                        resources=ResourceRequirements(),
+                                        selector=LabelSelector(),
                                         storage_class_name="storage_class_name_example",
                                         volume_mode="volume_mode_example",
                                         volume_name="volume_name_example",
@@ -3113,22 +2380,20 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 lun=1,
                                 read_only=True,
                                 target_wwns=[
-                                    "target_wwns_example",
+                                    "target_wwns_example"
                                 ],
                                 wwids=[
-                                    "wwids_example",
+                                    "wwids_example"
                                 ],
                             ),
                             flex_volume=FlexVolumeSource(
                                 driver="driver_example",
                                 fs_type="fs_type_example",
-                                options={
+                                options=dict(
                                     "key": "key_example",
-                                },
-                                read_only=True,
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
                                 ),
+                                read_only=True,
+                                secret_ref=LocalObjectReference(),
                             ),
                             flocker=FlockerVolumeSource(
                                 dataset_name="dataset_name_example",
@@ -3163,12 +2428,10 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 iscsi_interface="iscsi_interface_example",
                                 lun=1,
                                 portals=[
-                                    "portals_example",
+                                    "portals_example"
                                 ],
                                 read_only=True,
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                secret_ref=LocalObjectReference(),
                                 target_portal="target_portal_example",
                             ),
                             name="name_example",
@@ -3195,40 +2458,18 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 sources=[
                                     VolumeProjection(
                                         config_map=ConfigMapProjection(
-                                            items=[
-                                                KeyToPath(
-                                                    key="key_example",
-                                                    mode=1,
-                                                    path="path_example",
-                                                ),
-                                            ],
+                                            items=[],
                                             name="name_example",
                                             optional=True,
                                         ),
                                         downward_api=DownwardAPIProjection(
                                             items=[
-                                                DownwardAPIVolumeFile(
-                                                    field_ref=ObjectFieldSelector(
-                                                        api_version="api_version_example",
-                                                        field_path="field_path_example",
-                                                    ),
-                                                    mode=1,
-                                                    path="path_example",
-                                                    resource_field_ref=ResourceFieldSelector(
-                                                        container_name="container_name_example",
-                                                        divisor="divisor_example",
-                                                        resource="resource_example",
-                                                    ),
-                                                ),
+                                                DownwardAPIVolumeFile()
                                             ],
                                         ),
                                         secret=SecretProjection(
                                             items=[
-                                                KeyToPath(
-                                                    key="key_example",
-                                                    mode=1,
-                                                    path="path_example",
-                                                ),
+                                                KeyToPath()
                                             ],
                                             name="name_example",
                                             optional=True,
@@ -3238,7 +2479,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                             expiration_seconds=1,
                                             path="path_example",
                                         ),
-                                    ),
+                                    )
                                 ],
                             ),
                             quobyte=QuobyteVolumeSource(
@@ -3254,13 +2495,11 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 image="image_example",
                                 keyring="keyring_example",
                                 monitors=[
-                                    "monitors_example",
+                                    "monitors_example"
                                 ],
                                 pool="pool_example",
                                 read_only=True,
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                secret_ref=LocalObjectReference(),
                                 user="user_example",
                             ),
                             scale_io=ScaleIOVolumeSource(
@@ -3268,9 +2507,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 gateway="gateway_example",
                                 protection_domain="protection_domain_example",
                                 read_only=True,
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                secret_ref=LocalObjectReference(),
                                 ssl_enabled=True,
                                 storage_mode="storage_mode_example",
                                 storage_pool="storage_pool_example",
@@ -3279,22 +2516,14 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             ),
                             secret=SecretVolumeSource(
                                 default_mode=1,
-                                items=[
-                                    KeyToPath(
-                                        key="key_example",
-                                        mode=1,
-                                        path="path_example",
-                                    ),
-                                ],
+                                items=[],
                                 optional=True,
                                 secret_name="secret_name_example",
                             ),
                             storageos=StorageOSVolumeSource(
                                 fs_type="fs_type_example",
                                 read_only=True,
-                                secret_ref=LocalObjectReference(
-                                    name="name_example",
-                                ),
+                                secret_ref=LocalObjectReference(),
                                 volume_name="volume_name_example",
                                 volume_namespace="volume_namespace_example",
                             ),
@@ -3304,7 +2533,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 storage_policy_name="storage_policy_name_example",
                                 volume_path="volume_path_example",
                             ),
-                        ),
+                        )
                     ],
                 ),
                 triggers=[
@@ -3321,7 +2550,7 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                     dependency_name="dependency_name_example",
                                     value="value_example",
                                 ),
-                            ),
+                            )
                         ],
                         policy=IoArgoprojEventsV1alpha1TriggerPolicy(
                             k8s=IoArgoprojEventsV1alpha1K8SResourcePolicy(
@@ -3334,19 +2563,17 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                     factor=IoArgoprojEventsV1alpha1Amount(
                                         value='YQ==',
                                     ),
-                                    jitter=IoArgoprojEventsV1alpha1Amount(
-                                        value='YQ==',
-                                    ),
+                                    jitter=IoArgoprojEventsV1alpha1Amount(),
                                     steps=1,
                                 ),
                                 error_on_backoff_timeout=True,
-                                labels={
+                                labels=dict(
                                     "key": "key_example",
-                                },
+                                ),
                             ),
                             status=IoArgoprojEventsV1alpha1StatusPolicy(
                                 allow=[
-                                    1,
+                                    1
                                 ],
                             ),
                         ),
@@ -3354,43 +2581,15 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             requests_per_unit=1,
                             unit="unit_example",
                         ),
-                        retry_strategy=IoArgoprojEventsV1alpha1Backoff(
-                            duration=IoArgoprojEventsV1alpha1Int64OrString(
-                                int64_val="int64_val_example",
-                                str_val="str_val_example",
-                                type="type_example",
-                            ),
-                            factor=IoArgoprojEventsV1alpha1Amount(
-                                value='YQ==',
-                            ),
-                            jitter=IoArgoprojEventsV1alpha1Amount(
-                                value='YQ==',
-                            ),
-                            steps=1,
-                        ),
+                        retry_strategy=IoArgoprojEventsV1alpha1Backoff(),
                         template=IoArgoprojEventsV1alpha1TriggerTemplate(
                             argo_workflow=IoArgoprojEventsV1alpha1ArgoWorkflowTrigger(
                                 operation="operation_example",
                                 parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 source=IoArgoprojEventsV1alpha1ArtifactLocation(
-                                    configmap=ConfigMapKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
+                                    configmap=ConfigMapKeySelector(),
                                     file=IoArgoprojEventsV1alpha1FileArtifact(
                                         path="path_example",
                                     ),
@@ -3398,30 +2597,18 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         branch="branch_example",
                                         clone_directory="clone_directory_example",
                                         creds=IoArgoprojEventsV1alpha1GitCreds(
-                                            password=SecretKeySelector(
-                                                key="key_example",
-                                                name="name_example",
-                                                optional=True,
-                                            ),
-                                            username=SecretKeySelector(
-                                                key="key_example",
-                                                name="name_example",
-                                                optional=True,
-                                            ),
+                                            password=SecretKeySelector(),
+                                            username=SecretKeySelector(),
                                         ),
                                         file_path="file_path_example",
                                         ref="ref_example",
                                         remote=IoArgoprojEventsV1alpha1GitRemoteConfig(
                                             name="name_example",
                                             urls=[
-                                                "urls_example",
+                                                "urls_example"
                                             ],
                                         ),
-                                        ssh_key_secret=SecretKeySelector(
-                                            key="key_example",
-                                            name="name_example",
-                                            optional=True,
-                                        ),
+                                        ssh_key_secret=SecretKeySelector(),
                                         tag="tag_example",
                                         url="url_example",
                                     ),
@@ -3430,33 +2617,23 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         value='YQ==',
                                     ),
                                     s3=IoArgoprojEventsV1alpha1S3Artifact(
-                                        access_key=SecretKeySelector(
-                                            key="key_example",
-                                            name="name_example",
-                                            optional=True,
-                                        ),
+                                        access_key=SecretKeySelector(),
                                         bucket=IoArgoprojEventsV1alpha1S3Bucket(
                                             key="key_example",
                                             name="name_example",
                                         ),
                                         endpoint="endpoint_example",
                                         events=[
-                                            "events_example",
+                                            "events_example"
                                         ],
                                         filter=IoArgoprojEventsV1alpha1S3Filter(
                                             prefix="prefix_example",
                                             suffix="suffix_example",
                                         ),
                                         insecure=True,
-                                        metadata={
-                                            "key": "key_example",
-                                        },
+                                        metadata=dict(),
                                         region="region_example",
-                                        secret_key=SecretKeySelector(
-                                            key="key_example",
-                                            name="name_example",
-                                            optional=True,
-                                        ),
+                                        secret_key=SecretKeySelector(),
                                     ),
                                     url=IoArgoprojEventsV1alpha1URLArtifact(
                                         path="path_example",
@@ -3465,90 +2642,26 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 ),
                             ),
                             aws_lambda=IoArgoprojEventsV1alpha1AWSLambdaTrigger(
-                                access_key=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                access_key=SecretKeySelector(),
                                 function_name="function_name_example",
                                 invocation_type="invocation_type_example",
                                 parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 region="region_example",
                                 role_arn="role_arn_example",
-                                secret_key=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                secret_key=SecretKeySelector(),
                             ),
                             azure_event_hubs=IoArgoprojEventsV1alpha1AzureEventHubsTrigger(
                                 fqdn="fqdn_example",
                                 hub_name="hub_name_example",
-                                parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                shared_access_key=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
-                                shared_access_key_name=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                parameters=[],
+                                payload=[],
+                                shared_access_key=SecretKeySelector(),
+                                shared_access_key_name=SecretKeySelector(),
                             ),
                             conditions="conditions_example",
                             conditions_reset=[
@@ -3557,128 +2670,50 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                         cron="cron_example",
                                         timezone="timezone_example",
                                     ),
-                                ),
+                                )
                             ],
                             custom=IoArgoprojEventsV1alpha1CustomTrigger(
-                                cert_secret=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                cert_secret=SecretKeySelector(),
                                 parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
-                                payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
+                                payload=[],
                                 secure=True,
                                 server_name_override="server_name_override_example",
                                 server_url="server_url_example",
-                                spec={
+                                spec=dict(
                                     "key": "key_example",
-                                },
+                                ),
                             ),
                             http=IoArgoprojEventsV1alpha1HTTPTrigger(
                                 basic_auth=IoArgoprojEventsV1alpha1BasicAuth(
-                                    password=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    username=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
+                                    password=SecretKeySelector(),
+                                    username=SecretKeySelector(),
                                 ),
-                                headers={
+                                headers=dict(
                                     "key": "key_example",
-                                },
+                                ),
                                 method="method_example",
                                 parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 secure_headers=[
                                     IoArgoprojEventsV1alpha1SecureHeader(
                                         name="name_example",
                                         value_from=IoArgoprojEventsV1alpha1ValueFromSource(
-                                            config_map_key_ref=ConfigMapKeySelector(
-                                                key="key_example",
-                                                name="name_example",
-                                                optional=True,
-                                            ),
-                                            secret_key_ref=SecretKeySelector(
-                                                key="key_example",
-                                                name="name_example",
-                                                optional=True,
-                                            ),
+                                            config_map_key_ref=ConfigMapKeySelector(),
+                                            secret_key_ref=SecretKeySelector(),
                                         ),
-                                    ),
+                                    )
                                 ],
                                 timeout="timeout_example",
                                 tls=IoArgoprojEventsV1alpha1TLSConfig(
-                                    ca_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_key_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
+                                    ca_cert_secret=SecretKeySelector(),
+                                    client_cert_secret=SecretKeySelector(),
+                                    client_key_secret=SecretKeySelector(),
                                     insecure_skip_verify=True,
                                 ),
                                 url="url_example",
@@ -3687,164 +2722,27 @@ with argo_workflows.ApiClient(configuration) as api_client:
                                 live_object=True,
                                 operation="operation_example",
                                 parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 patch_strategy="patch_strategy_example",
-                                source=IoArgoprojEventsV1alpha1ArtifactLocation(
-                                    configmap=ConfigMapKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    file=IoArgoprojEventsV1alpha1FileArtifact(
-                                        path="path_example",
-                                    ),
-                                    git=IoArgoprojEventsV1alpha1GitArtifact(
-                                        branch="branch_example",
-                                        clone_directory="clone_directory_example",
-                                        creds=IoArgoprojEventsV1alpha1GitCreds(
-                                            password=SecretKeySelector(
-                                                key="key_example",
-                                                name="name_example",
-                                                optional=True,
-                                            ),
-                                            username=SecretKeySelector(
-                                                key="key_example",
-                                                name="name_example",
-                                                optional=True,
-                                            ),
-                                        ),
-                                        file_path="file_path_example",
-                                        ref="ref_example",
-                                        remote=IoArgoprojEventsV1alpha1GitRemoteConfig(
-                                            name="name_example",
-                                            urls=[
-                                                "urls_example",
-                                            ],
-                                        ),
-                                        ssh_key_secret=SecretKeySelector(
-                                            key="key_example",
-                                            name="name_example",
-                                            optional=True,
-                                        ),
-                                        tag="tag_example",
-                                        url="url_example",
-                                    ),
-                                    inline="inline_example",
-                                    resource=IoArgoprojEventsV1alpha1Resource(
-                                        value='YQ==',
-                                    ),
-                                    s3=IoArgoprojEventsV1alpha1S3Artifact(
-                                        access_key=SecretKeySelector(
-                                            key="key_example",
-                                            name="name_example",
-                                            optional=True,
-                                        ),
-                                        bucket=IoArgoprojEventsV1alpha1S3Bucket(
-                                            key="key_example",
-                                            name="name_example",
-                                        ),
-                                        endpoint="endpoint_example",
-                                        events=[
-                                            "events_example",
-                                        ],
-                                        filter=IoArgoprojEventsV1alpha1S3Filter(
-                                            prefix="prefix_example",
-                                            suffix="suffix_example",
-                                        ),
-                                        insecure=True,
-                                        metadata={
-                                            "key": "key_example",
-                                        },
-                                        region="region_example",
-                                        secret_key=SecretKeySelector(
-                                            key="key_example",
-                                            name="name_example",
-                                            optional=True,
-                                        ),
-                                    ),
-                                    url=IoArgoprojEventsV1alpha1URLArtifact(
-                                        path="path_example",
-                                        verify_cert=True,
-                                    ),
-                                ),
+                                source=IoArgoprojEventsV1alpha1ArtifactLocation(),
                             ),
                             kafka=IoArgoprojEventsV1alpha1KafkaTrigger(
                                 compress=True,
                                 flush_frequency=1,
                                 parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
+                                    IoArgoprojEventsV1alpha1TriggerParameter()
                                 ],
                                 partition=1,
                                 partitioning_key="partitioning_key_example",
-                                payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
+                                payload=[],
                                 required_acks=1,
                                 sasl=IoArgoprojEventsV1alpha1SASLConfig(
                                     mechanism="mechanism_example",
-                                    password=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    user=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
+                                    password=SecretKeySelector(),
+                                    user=SecretKeySelector(),
                                 ),
-                                tls=IoArgoprojEventsV1alpha1TLSConfig(
-                                    ca_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_key_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    insecure_skip_verify=True,
-                                ),
+                                tls=IoArgoprojEventsV1alpha1TLSConfig(),
                                 topic="topic_example",
                                 url="url_example",
                                 version="version_example",
@@ -3854,166 +2752,29 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             ),
                             name="name_example",
                             nats=IoArgoprojEventsV1alpha1NATSTrigger(
-                                parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
+                                parameters=[],
+                                payload=[],
                                 subject="subject_example",
-                                tls=IoArgoprojEventsV1alpha1TLSConfig(
-                                    ca_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_key_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    insecure_skip_verify=True,
-                                ),
+                                tls=IoArgoprojEventsV1alpha1TLSConfig(),
                                 url="url_example",
                             ),
                             open_whisk=IoArgoprojEventsV1alpha1OpenWhiskTrigger(
                                 action_name="action_name_example",
-                                auth_token=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                auth_token=SecretKeySelector(),
                                 host="host_example",
                                 namespace="namespace_example",
-                                parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
+                                parameters=[],
+                                payload=[],
                                 version="version_example",
                             ),
                             pulsar=IoArgoprojEventsV1alpha1PulsarTrigger(
-                                auth_token_secret=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
-                                connection_backoff=IoArgoprojEventsV1alpha1Backoff(
-                                    duration=IoArgoprojEventsV1alpha1Int64OrString(
-                                        int64_val="int64_val_example",
-                                        str_val="str_val_example",
-                                        type="type_example",
-                                    ),
-                                    factor=IoArgoprojEventsV1alpha1Amount(
-                                        value='YQ==',
-                                    ),
-                                    jitter=IoArgoprojEventsV1alpha1Amount(
-                                        value='YQ==',
-                                    ),
-                                    steps=1,
-                                ),
-                                parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                payload=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                tls=IoArgoprojEventsV1alpha1TLSConfig(
-                                    ca_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_cert_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    client_key_secret=SecretKeySelector(
-                                        key="key_example",
-                                        name="name_example",
-                                        optional=True,
-                                    ),
-                                    insecure_skip_verify=True,
-                                ),
+                                auth_token_secret=SecretKeySelector(),
+                                connection_backoff=IoArgoprojEventsV1alpha1Backoff(),
+                                parameters=[],
+                                payload=[],
+                                tls=IoArgoprojEventsV1alpha1TLSConfig(),
                                 tls_allow_insecure_connection=True,
-                                tls_trust_certs_secret=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                tls_trust_certs_secret=SecretKeySelector(),
                                 tls_validate_hostname=True,
                                 topic="topic_example",
                                 url="url_example",
@@ -4021,64 +2782,111 @@ with argo_workflows.ApiClient(configuration) as api_client:
                             slack=IoArgoprojEventsV1alpha1SlackTrigger(
                                 channel="channel_example",
                                 message="message_example",
-                                parameters=[
-                                    IoArgoprojEventsV1alpha1TriggerParameter(
-                                        dest="dest_example",
-                                        operation="operation_example",
-                                        src=IoArgoprojEventsV1alpha1TriggerParameterSource(
-                                            context_key="context_key_example",
-                                            context_template="context_template_example",
-                                            data_key="data_key_example",
-                                            data_template="data_template_example",
-                                            dependency_name="dependency_name_example",
-                                            value="value_example",
-                                        ),
-                                    ),
-                                ],
-                                slack_token=SecretKeySelector(
-                                    key="key_example",
-                                    name="name_example",
-                                    optional=True,
-                                ),
+                                parameters=[],
+                                slack_token=SecretKeySelector(),
                             ),
                         ),
-                    ),
+                    )
                 ],
             ),
             status=IoArgoprojEventsV1alpha1SensorStatus(
                 status=IoArgoprojEventsV1alpha1Status(
                     conditions=[
                         IoArgoprojEventsV1alpha1Condition(
-                            last_transition_time=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                            last_transition_time="1970-01-01T00:00:00.00Z",
                             message="message_example",
                             reason="reason_example",
                             status="status_example",
                             type="type_example",
-                        ),
+                        )
                     ],
                 ),
             ),
         ),
-    ) # SensorUpdateSensorRequest | 
-
-    # example passing only required values which don't have defaults set
+    )
     try:
-        api_response = api_instance.update_sensor(namespace, name, body)
+        api_response = api_instance.update_sensor(
+            path_params=path_params,
+            body=body,
+        )
         pprint(api_response)
     except argo_workflows.ApiException as e:
         print("Exception when calling SensorServiceApi->update_sensor: %s\n" % e)
 ```
-
-
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **str**|  |
- **name** | **str**|  |
- **body** | [**SensorUpdateSensorRequest**](SensorUpdateSensorRequest.md)|  |
+body | typing.Union[SchemaForRequestBodyApplicationJson] | required |
+path_params | RequestPathParams | |
+content_type | str | optional, default is 'application/json' | Selects the schema and serialization of the request body
+accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
 
-### Return type
+### body
+
+#### SchemaForRequestBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**SensorUpdateSensorRequest**](SensorUpdateSensorRequest.md) |  | 
+
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+namespace | NamespaceSchema | | 
+name | NameSchema | | 
+
+#### NamespaceSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### NameSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | ApiResponseFor200 | A successful response.
+default | ApiResponseForDefault | An unexpected error response.
+
+#### ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor200ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**IoArgoprojEventsV1alpha1Sensor**](IoArgoprojEventsV1alpha1Sensor.md) |  | 
+
+
+#### ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**GrpcGatewayRuntimeError**](GrpcGatewayRuntimeError.md) |  | 
+
+
 
 [**IoArgoprojEventsV1alpha1Sensor**](IoArgoprojEventsV1alpha1Sensor.md)
 
@@ -4086,22 +2894,10 @@ Name | Type | Description  | Notes
 
 [BearerToken](../README.md#BearerToken)
 
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A successful response. |  -  |
-**0** | An unexpected error response. |  -  |
-
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **watch_sensors**
-> StreamResultOfSensorSensorWatchEvent watch_sensors(namespace)
+> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} watch_sensors(namespace)
 
 
 
@@ -4109,11 +2905,11 @@ Name | Type | Description  | Notes
 
 * Api Key Authentication (BearerToken):
 ```python
-import time
 import argo_workflows
 from argo_workflows.api import sensor_service_api
 from argo_workflows.model.grpc_gateway_runtime_error import GrpcGatewayRuntimeError
-from argo_workflows.model.stream_result_of_sensor_sensor_watch_event import StreamResultOfSensorSensorWatchEvent
+from argo_workflows.model.sensor_sensor_watch_event import SensorSensorWatchEvent
+from argo_workflows.model.grpc_gateway_runtime_stream_error import GrpcGatewayRuntimeStreamError
 from pprint import pprint
 # Defining the host is optional and defaults to http://localhost:2746
 # See configuration.py for a list of all supported configuration parameters.
@@ -4131,73 +2927,187 @@ configuration.api_key['BearerToken'] = 'YOUR_API_KEY'
 
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['BearerToken'] = 'Bearer'
-
 # Enter a context with an instance of the API client
 with argo_workflows.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = sensor_service_api.SensorServiceApi(api_client)
-    namespace = "namespace_example" # str | 
-    list_options_label_selector = "listOptions.labelSelector_example" # str | A selector to restrict the list of returned objects by their labels. Defaults to everything. +optional. (optional)
-    list_options_field_selector = "listOptions.fieldSelector_example" # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. +optional. (optional)
-    list_options_watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. +optional. (optional)
-    list_options_allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. +optional. (optional)
-    list_options_resource_version = "listOptions.resourceVersion_example" # str | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)
-    list_options_resource_version_match = "listOptions.resourceVersionMatch_example" # str | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional (optional)
-    list_options_timeout_seconds = "listOptions.timeoutSeconds_example" # str | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. (optional)
-    list_options_limit = "listOptions.limit_example" # str | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
-    list_options_continue = "listOptions.continue_example" # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 
     # example passing only required values which don't have defaults set
+    path_params = {
+        'namespace': "namespace_example",
+    }
+    query_params = {
+    }
     try:
-        api_response = api_instance.watch_sensors(namespace)
+        api_response = api_instance.watch_sensors(
+            path_params=path_params,
+            query_params=query_params,
+        )
         pprint(api_response)
     except argo_workflows.ApiException as e:
         print("Exception when calling SensorServiceApi->watch_sensors: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
+    # example passing only optional values
+    path_params = {
+        'namespace': "namespace_example",
+    }
+    query_params = {
+        'listOptions.labelSelector': "listOptions.labelSelector_example",
+        'listOptions.fieldSelector': "listOptions.fieldSelector_example",
+        'listOptions.watch': True,
+        'listOptions.allowWatchBookmarks': True,
+        'listOptions.resourceVersion': "listOptions.resourceVersion_example",
+        'listOptions.resourceVersionMatch': "listOptions.resourceVersionMatch_example",
+        'listOptions.timeoutSeconds': "listOptions.timeoutSeconds_example",
+        'listOptions.limit': "listOptions.limit_example",
+        'listOptions.continue': "listOptions.continue_example",
+    }
     try:
-        api_response = api_instance.watch_sensors(namespace, list_options_label_selector=list_options_label_selector, list_options_field_selector=list_options_field_selector, list_options_watch=list_options_watch, list_options_allow_watch_bookmarks=list_options_allow_watch_bookmarks, list_options_resource_version=list_options_resource_version, list_options_resource_version_match=list_options_resource_version_match, list_options_timeout_seconds=list_options_timeout_seconds, list_options_limit=list_options_limit, list_options_continue=list_options_continue)
+        api_response = api_instance.watch_sensors(
+            path_params=path_params,
+            query_params=query_params,
+        )
         pprint(api_response)
     except argo_workflows.ApiException as e:
         print("Exception when calling SensorServiceApi->watch_sensors: %s\n" % e)
 ```
-
-
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **namespace** | **str**|  |
- **list_options_label_selector** | **str**| A selector to restrict the list of returned objects by their labels. Defaults to everything. +optional. | [optional]
- **list_options_field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. +optional. | [optional]
- **list_options_watch** | **bool**| Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. +optional. | [optional]
- **list_options_allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. +optional. | [optional]
- **list_options_resource_version** | **str**| resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional | [optional]
- **list_options_resource_version_match** | **str**| resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset +optional | [optional]
- **list_options_timeout_seconds** | **str**| Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. +optional. | [optional]
- **list_options_limit** | **str**| limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | [optional]
- **list_options_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional]
+query_params | RequestQueryParams | |
+path_params | RequestPathParams | |
+accept_content_types | typing.Tuple[str] | default is ('application/json', ) | Tells the server the content type(s) that are accepted by the client
+stream | bool | default is False | if True then the response.content will be streamed and loaded from a file like object. When downloading a file, set this to True to force the code to deserialize the content to a FileSchema file
+timeout | typing.Optional[typing.Union[int, typing.Tuple]] | default is None | the timeout used by the rest client
+skip_deserialization | bool | default is False | when True, headers and body will be unset and an instance of api_client.ApiResponseWithoutDeserialization will be returned
 
-### Return type
+### query_params
+#### RequestQueryParams
 
-[**StreamResultOfSensorSensorWatchEvent**](StreamResultOfSensorSensorWatchEvent.md)
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+listOptions.labelSelector | ListOptionsLabelSelectorSchema | | optional
+listOptions.fieldSelector | ListOptionsFieldSelectorSchema | | optional
+listOptions.watch | ListOptionsWatchSchema | | optional
+listOptions.allowWatchBookmarks | ListOptionsAllowWatchBookmarksSchema | | optional
+listOptions.resourceVersion | ListOptionsResourceVersionSchema | | optional
+listOptions.resourceVersionMatch | ListOptionsResourceVersionMatchSchema | | optional
+listOptions.timeoutSeconds | ListOptionsTimeoutSecondsSchema | | optional
+listOptions.limit | ListOptionsLimitSchema | | optional
+listOptions.continue | ListOptionsContinueSchema | | optional
+
+
+#### ListOptionsLabelSelectorSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### ListOptionsFieldSelectorSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### ListOptionsWatchSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**bool** |  | 
+
+#### ListOptionsAllowWatchBookmarksSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**bool** |  | 
+
+#### ListOptionsResourceVersionSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### ListOptionsResourceVersionMatchSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### ListOptionsTimeoutSecondsSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### ListOptionsLimitSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+#### ListOptionsContinueSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### path_params
+#### RequestPathParams
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+namespace | NamespaceSchema | | 
+
+#### NamespaceSchema
+
+Type | Description | Notes
+------------- | ------------- | -------------
+**str** |  | 
+
+### Return Types, Responses
+
+Code | Class | Description
+------------- | ------------- | -------------
+n/a | api_client.ApiResponseWithoutDeserialization | When skip_deserialization is True this response is returned
+200 | ApiResponseFor200 | A successful response.(streaming responses)
+default | ApiResponseForDefault | An unexpected error response.
+
+#### ApiResponseFor200
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor200ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor200ResponseBodyApplicationJson
+
+#### Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**error** | [**GrpcGatewayRuntimeStreamError**](GrpcGatewayRuntimeStreamError.md) |  | [optional] 
+**result** | [**SensorSensorWatchEvent**](SensorSensorWatchEvent.md) |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+#### ApiResponseForDefault
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+response | urllib3.HTTPResponse | Raw response |
+body | typing.Union[SchemaFor0ResponseBodyApplicationJson, ] |  |
+headers | Unset | headers were not defined |
+
+#### SchemaFor0ResponseBodyApplicationJson
+Type | Description  | Notes
+------------- | ------------- | -------------
+[**GrpcGatewayRuntimeError**](GrpcGatewayRuntimeError.md) |  | 
+
+
+
+**{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**
 
 ### Authorization
 
 [BearerToken](../README.md#BearerToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | A successful response.(streaming responses) |  -  |
-**0** | An unexpected error response. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

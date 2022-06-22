@@ -2,13 +2,12 @@
 
 TCPSocketAction describes an action based on opening a socket
 
-## Properties
+#### Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**port** | **str** |  | 
 **host** | **str** | Optional: Host name to connect to, defaults to the pod IP. | [optional] 
+**port** | **str** |  | 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
 

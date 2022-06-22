@@ -2,7 +2,7 @@
 
 SecretKeySelector selects a key of a Secret.
 
-## Properties
+#### Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **key** | **str** | The key of the secret to select from.  Must be a valid secret key. | 
@@ -11,5 +11,4 @@ Name | Type | Description | Notes
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
 

@@ -23,10 +23,10 @@ generate:
 		sed 's/io.k8s.apimachinery.pkg.apis.meta.v1.//' \
 		> $(WD)/swagger.json
 	cp ../../LICENSE $(WD)/LICENSE
-	$(DOCKER) openapitools/openapi-generator-cli:v5.2.1 \
+	$(DOCKER) openapitools/openapi-generator-cli:v6.0.0 \
 		generate \
 		--input-spec /wd/swagger.json \
-		--generator-name python \
+		--generator-name python-experimental \
 		--output /wd \
 		--additional-properties packageVersion=${VERSION} \
 		--additional-properties packageName="argo_workflows" \
